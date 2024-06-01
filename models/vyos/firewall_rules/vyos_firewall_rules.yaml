@@ -37,9 +37,16 @@ DOCUMENTATION: |
           type: list
           elements: dict
           suboptions:
+            filter:
+              description:
+                - Filter type (exclusive to "name").
+                - Supported in 1.4 and later.
+              type: str
+              choices: ['input', 'output', 'forward']
             name:
              description:
                - Firewall rule set name.
+               - Required for 1.3- and optional for 1.4+.
              type: str    
             default_action:
               description:
@@ -47,8 +54,15 @@ DOCUMENTATION: |
                 - drop (Drop if no prior rules are hit (default))
                 - reject (Drop and notify source if no prior rules are hit)
                 - accept (Accept if no prior rules are hit)
+                - jump (Jump to another rule-set, 1.4+)
               type: str
-              choices: ['drop', 'reject', 'accept']
+              choices: ['drop', 'reject', 'accept', 'jump']
+            default_jump_target:
+              description:
+                - Default jump target if the default action is jump.
+                - Only valid in 1.4 and later.
+                - Only valid when default_action = jump.
+              type: str
             description:
               description:
                 - Rule set description.
@@ -75,8 +89,10 @@ DOCUMENTATION: |
                 action:
                   description:
                     - Specifying the action.
+                    - inspect is available  < 1.4
+                    - continue, return, jump, queue, synproxy are available >= 1.4
                   type: str
-                  choices: ['drop', 'reject', 'accept', 'inspect']
+                  choices: ['drop', 'reject', 'accept', 'inspect', 'continue', 'return', 'jump', 'queue', 'synproxy']
                 destination:
                   description:
                     - Specifying the destination parameters.
@@ -112,10 +128,12 @@ DOCUMENTATION: |
                         - The whole list can also be "negated" using '!'.
                         - For example:'!22,telnet,http,123,1001-1005'.
                       type: str      
-                disabled:
+                disable:
                   description:
                     - Option to disable firewall rule.
                   type: bool
+                  aliases:
+                    - disabled
                 fragment:
                   description:
                     - IP fragment match.
@@ -154,6 +172,12 @@ DOCUMENTATION: |
                     - Inboud ip sec packets.
                   type: str
                   choices: ['match-ipsec', 'match-none']
+                jump_target:
+                  description:
+                    - Jump target if the action is jump.
+                    - Only valid in 1.4 and later.
+                    - Only valid when action = jump.
+                  type: str
                 limit:
                   description:
                     - Rate limit using a token bucket filter.
@@ -202,7 +226,21 @@ DOCUMENTATION: |
                     - tcp_udp Both TCP and UDP.
                     - all All IP protocols.
                     - (!)All IP protocols except for the specified name or number.
-                  type: str  
+                  type: str
+                queue:
+                  description:
+                    - Queue options.
+                    - Only valid in 1.4 and later.
+                    - Only valid when action = queue.
+                    - Can be a queue number or range.
+                  type: str
+                queue_options:
+                  description:
+                    - Queue options.
+                    - Only valid in 1.4 and later.
+                    - Only valid when action = queue.
+                  type: str
+                  choices: ['bypass', 'fanout']
                 recent:
                   description:
                       - Parameters for matching recently seen sources.
@@ -283,9 +321,23 @@ DOCUMENTATION: |
                   type: dict
                   suboptions:
                     flags:
-                      description:
-                        - TCP flags to be matched.
-                      type: str
+                      description: 
+                        - list of tcp flags to be matched
+                        - 5.0 breaking change to support 1.4+ and 1.3-
+                      type: list
+                      elements: dict
+                      suboptions:
+                        flag:
+                          description:
+                            - TCP flag to be matched.
+                            - syn, ack, fin, rst, urg, psh, all (1.3-)
+                            - syn, ack, fin, rst, urg, psh, cwr, ecn (1.4+)    
+                          type: str
+                          choices: ['ack', 'cwr', 'ecn', 'fin', 'psh', 'rst', 'syn', 'urg', 'all']
+                        invert:
+                          description:
+                            - Invert the match.
+                          type: bool
                 time:
                   description:
                     - Time to match rule.
