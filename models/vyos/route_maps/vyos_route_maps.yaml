@@ -1,5 +1,5 @@
 module: vyos_route_maps
-version_added: 2.3.1
+version_added: '2.3.1'
 short_description: Route Map Resource Module.
 description:
 - This module manages route map configurations on devices running VYOS.
