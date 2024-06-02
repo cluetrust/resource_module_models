@@ -1,5 +1,5 @@
 module: vyos_snmp_serve
-version_added: 2.7.0
+version_added: '2.7.0'
 short_description: Manages snmp_server resource module
 description: This module manages the snmp server attributes of Vyos network devices
 author: Gomathi Selvi Srinivasan (@GomathiselviS)

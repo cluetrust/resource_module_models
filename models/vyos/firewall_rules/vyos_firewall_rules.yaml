@@ -14,7 +14,7 @@ COPYRIGHT: Copyright 2019 Red Hat
 
 DOCUMENTATION: |
   module: vyos_firewall_rules
-  version_added: 2.10
+  version_added: '2.10.0'
   short_description: FIREWALL rules resource module
   description: This module manages firewall rule-set attributes on VyOS devices
   author:
@@ -47,7 +47,7 @@ DOCUMENTATION: |
              description:
                - Firewall rule set name.
                - Required for 1.3- and optional for 1.4+.
-             type: str    
+             type: str
             default_action:
               description:
                 - Default action for rule-set.
@@ -81,7 +81,7 @@ DOCUMENTATION: |
                   description:
                     - Rule number.
                   type: int
-                  required: True 
+                  required: True
                 description:
                   description:
                     - Description of this rule.
@@ -127,13 +127,12 @@ DOCUMENTATION: |
                         - Multiple destination ports can be specified as a comma-separated list.
                         - The whole list can also be "negated" using '!'.
                         - For example:'!22,telnet,http,123,1001-1005'.
-                      type: str      
+                      type: str
                 disable:
                   description:
                     - Option to disable firewall rule.
+                    - aliased to disabled
                   type: bool
-                  aliases:
-                    - disabled
                 fragment:
                   description:
                     - IP fragment match.
@@ -368,7 +367,7 @@ DOCUMENTATION: |
                     established:
                       description:
                         - Established state.
-                      type: bool 
+                      type: bool
                     invalid:
                       description:
                         - Invalid state.
@@ -402,7 +401,7 @@ DOCUMENTATION: |
                   type: dict
                   suboptions:
                     flags:
-                      description: 
+                      description:
                         - list of tcp flags to be matched
                         - 5.0 breaking change to support 1.4+ and 1.3-
                       type: list
@@ -412,7 +411,7 @@ DOCUMENTATION: |
                           description:
                             - TCP flag to be matched.
                             - syn, ack, fin, rst, urg, psh, all (1.3-)
-                            - syn, ack, fin, rst, urg, psh, cwr, ecn (1.4+)    
+                            - syn, ack, fin, rst, urg, psh, cwr, ecn (1.4+)
                           type: str
                           choices: ['ack', 'cwr', 'ecn', 'fin', 'psh', 'rst', 'syn', 'urg', 'all']
                         invert:
@@ -431,7 +430,7 @@ DOCUMENTATION: |
                     monthdays:
                       description:
                         - Monthdays to match rule on.
-                      type: str    
+                      type: str
                     startdate:
                       description:
                         - Date to start matching rule.
@@ -463,7 +462,7 @@ DOCUMENTATION: |
       - deleted
       - gathered
       - rendered
-      - parsed  
+      - parsed
       default: merged
 EXAMPLES:
   - deleted_example_01.txt

@@ -2,9 +2,9 @@
 #
 #
 - name: Render the commands for provided  configuration
-      vyos_firewall_rules:
-        running_config: 
-         "set firewall group address-group 'inbound'
+  vyos_firewall_rules:
+    running_config:
+      "set firewall group address-group 'inbound'
  set firewall name Downlink default-action 'accept'
  set firewall name Downlink description 'IPv4 INBOUND rule set'
  set firewall name Downlink rule 501 action 'accept'
@@ -13,7 +13,7 @@
  set firewall name Downlink rule 502 action 'reject'
  set firewall name Downlink rule 502 description 'Rule 502 is configured by Ansible'
  set firewall name Downlink rule 502 ipsec 'match-ipsec'"
-        state: parsed
+    state: parsed
 #
 #
 # -------------------------
@@ -23,23 +23,23 @@
 #
 # "parsed": [
 #        {
-#            "afi": "ipv4", 
+#            "afi": "ipv4",
 #            "rule_sets": [
 #                {
-#                    "default_action": "accept", 
-#                    "description": "IPv4 INBOUND rule set", 
-#                    "name": "Downlink", 
+#                    "default_action": "accept",
+#                    "description": "IPv4 INBOUND rule set",
+#                    "name": "Downlink",
 #                    "rules": [
 #                        {
-#                            "action": "accept", 
-#                            "description": "Rule 501 is configured by Ansible", 
-#                            "ipsec": "match-ipsec", 
+#                            "action": "accept",
+#                            "description": "Rule 501 is configured by Ansible",
+#                            "ipsec": "match-ipsec",
 #                            "number": 501
-#                        }, 
+#                        },
 #                        {
-#                            "action": "reject", 
-#                            "description": "Rule 502 is configured by Ansible", 
-#                            "ipsec": "match-ipsec", 
+#                            "action": "reject",
+#                            "description": "Rule 502 is configured by Ansible",
+#                            "ipsec": "match-ipsec",
 #                            "number": 502
 #                        }
 #                    ]

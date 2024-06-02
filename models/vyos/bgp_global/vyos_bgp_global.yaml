@@ -1,5 +1,5 @@
 module: vyos_bgp_global
-version_added: 1.3.0
+version_added: '1.3.0'
 short_description: BGP Global Resource Module.
 description: 
 - This module manages BGP global configuration of interfaces on devices running VYOS.
