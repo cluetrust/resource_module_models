@@ -15,12 +15,12 @@
 # set firewall name Downlink rule 502 ipsec 'match-ipsec'
 #
 - name: Delete attributes of given firewall rules.
-      vyos_firewall_rules:
-        config:
-          - afi: ipv4
-            rule_sets:
-              - name: 'Downlink'
-        state: deleted
+  vyos_firewall_rules:
+    config:
+      - afi: ipv4
+        rule_sets:
+          - name: 'Downlink'
+    state: deleted
 #
 #
 # ------------------------
@@ -29,23 +29,23 @@
 #
 #    "before": [
 #        {
-#            "afi": "ipv4", 
+#            "afi": "ipv4",
 #            "rule_sets": [
 #                {
-#                    "default_action": "accept", 
-#                    "description": "IPv4 INBOUND rule set", 
-#                    "name": "Downlink", 
+#                    "default_action": "accept",
+#                    "description": "IPv4 INBOUND rule set",
+#                    "name": "Downlink",
 #                    "rules": [
 #                        {
-#                            "action": "accept", 
-#                            "description": "Rule 501 is configured by Ansible", 
-#                            "ipsec": "match-ipsec", 
+#                            "action": "accept",
+#                            "description": "Rule 501 is configured by Ansible",
+#                            "ipsec": "match-ipsec",
 #                            "number": 501
-#                        }, 
+#                        },
 #                        {
-#                            "action": "reject", 
-#                            "description": "Rule 502 is configured by Ansible", 
-#                            "ipsec": "match-ipsec", 
+#                            "action": "reject",
+#                            "description": "Rule 502 is configured by Ansible",
+#                            "ipsec": "match-ipsec",
 #                            "number": 502
 #                        }
 #                    ]

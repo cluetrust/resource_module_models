@@ -1,5 +1,5 @@
 module: vyos_ospf_interfaces
-version_added: 1.2.0
+version_added: '1.2.0'
 short_description: OSPF Interfaces Resource Module.
 description: 
 - This module manages OSPF configuration of interfaces on devices running VYOS.
