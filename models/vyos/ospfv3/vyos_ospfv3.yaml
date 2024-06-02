@@ -54,11 +54,11 @@ DOCUMENTATION: |
         parameters:
           descriptions: OSPFv3 specific parameters.
           type: dict
-          suboptions: 
-           router_id: 
+          suboptions:
+           router_id:
              description: Override the default router identifier.
              type: str
-        redistribute:  
+        redistribute:
           description: Redistribute information from another routing protocol.
           type: list
           elements: dict
@@ -66,10 +66,10 @@ DOCUMENTATION: |
             route_type:
               description: Route type to redistribute.
               type: str
-              choices: ['bgp', 'connected', 'kernel', 'ripng', 'static'] 
+              choices: ['bgp', 'connected', 'kernel', 'ripng', 'static']
             route_map:
               description: Route map references.
-              type: str 
+              type: str
     running_config:
       description:
         - The configuration to be parsed.

@@ -28,7 +28,7 @@
     config:
       - name: eth2
         ipv4:
-	  - address: 192.0.2.10/24
+          - address: 192.0.2.10/24
 
       - name: eth3
         ipv6:

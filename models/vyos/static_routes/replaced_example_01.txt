@@ -12,19 +12,19 @@
 # set protocols static route6 2001:db8:1000::/36 next-hop '2001:db8:2000:2::2'
 #
 - name: Replace device configurations of listed static routes with provided configurations
-      vyos_static_routes:
-          config:
-            - address_families:
-              - afi: 'ipv4'
-                routes:
-                  - dest: 192.0.2.32/28
-                    blackhole_config:
-                      distance: 2
-                    next_hops:
-                      - forward_router_address: 192.0.2.7
-                        enabled: false
-                      - forward_router_address: 192.0.2.8
-          state: replaced
+  vyos_static_routes:
+    config:
+      - address_families:
+        - afi: 'ipv4'
+          routes:
+            - dest: 192.0.2.32/28
+              blackhole_config:
+                distance: 2
+              next_hops:
+                - forward_router_address: 192.0.2.7
+                  enabled: false
+                - forward_router_address: 192.0.2.8
+    state: replaced
 #
 #
 # -------------------------
@@ -130,7 +130,7 @@
 #            ]
 #        }
 #    ]
-# 
+#
 # After state:
 # -------------
 #

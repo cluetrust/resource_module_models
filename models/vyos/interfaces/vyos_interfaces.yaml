@@ -16,9 +16,9 @@ DOCUMENTATION: |
   module: vyos_interfaces
   version_added: '2.9.0'
   short_description: Manages interface attributes of VyOS network devices.
-  description: 
+  description:
     - This module manages the interface attributes on VyOS network devices.
-    - This module supports managing base attributes of Ethernet, Bonding, 
+    - This module supports managing base attributes of Ethernet, Bonding,
       VXLAN, Loopback and Virtual Tunnel Interfaces.
   author: Nilashish Chakraborty (@nilashishc)
   options:
@@ -38,7 +38,7 @@ DOCUMENTATION: |
           type: str
         duplex:
           description:
-            - Interface duplex mode. 
+            - Interface duplex mode.
             - Applicable for Ethernet interfaces only.
           choices: ['full', 'half', 'auto']
         enable:

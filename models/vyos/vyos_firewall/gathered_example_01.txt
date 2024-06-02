@@ -28,9 +28,9 @@
 # set firewall twa-hazards-protection 'enable'
 #
 - name: Gather firewall global config with provided configurations
-      vyos_firewall_global:
-          config:
-          state: gathered
+  vyos_firewall_global:
+    config:
+    state: gathered
 #
 #
 # -------------------------
@@ -39,7 +39,7 @@
 #
 #    "gathered": [
 # {
-#        "config_trap": true, 
+#        "config_trap": true,
 #        "group": {
 #            "address_group": [
 #                {
@@ -53,9 +53,9 @@
 #                        }
 #                    ],
 #                    "name": "ENG-HOSTS"
-#                }, 
+#                },
 #                {
-#                    "description": "Sales office hosts address list", 
+#                    "description": "Sales office hosts address list",
 #                    "members": [
 #                        {
 #                            "address": "192.0.2.1"
@@ -66,50 +66,50 @@
 #                        {
 #                            "address": "192.0.2.3"
 #                        }
-#                    ], 
+#                    ],
 #                    "name": "SALES-HOSTS"
 #                }
-#            ], 
+#            ],
 #            "network_group": [
 #                {
-#                    "description": "This group has the Management network addresses", 
+#                    "description": "This group has the Management network addresses",
 #                    "members": [
 #                        {
 #                            "address": "192.0.1.0/24"
 #                        }
-#                    ], 
+#                    ],
 #                    "name": "MGMT"
 #                }
 #            ]
-#        }, 
-#        "log_martians": true, 
+#        },
+#        "log_martians": true,
 #        "ping": {
-#            "all": true, 
+#            "all": true,
 #            "broadcast": true
-#        }, 
+#        },
 #        "route_redirects": [
 #            {
-#                "afi": "ipv4", 
+#                "afi": "ipv4",
 #                "icmp_redirects": {
-#                    "receive": false, 
+#                    "receive": false,
 #                    "send": true
-#                }, 
+#                },
 #                "ip_src_route": true
 #            }
-#        ], 
+#        ],
 #        "state_policy": [
 #            {
-#                "action": "accept", 
-#                "connection_type": "established", 
+#                "action": "accept",
+#                "connection_type": "established",
 #                "log": true
-#            }, 
+#            },
 #            {
-#                "action": "reject", 
+#                "action": "reject",
 #                "connection_type": "invalid"
 #            }
-#        ], 
-#        "syn_cookies": true, 
-#        "twa_hazards_protection": true, 
+#        ],
+#        "syn_cookies": true,
+#        "twa_hazards_protection": true,
 #        "validation": "strict"
 #    }
 #
