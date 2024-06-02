@@ -19,10 +19,10 @@
       - name: bond3
         mode: active-backup
         members:
-         - member: eth1
-         - member: eth2
-         - member: eth3
-        primary: eth3 
+          - member: eth1
+          - member: eth2
+          - member: eth3
+        primary: eth3
         hash-policy: layer2
     state: overridden
 #
@@ -33,62 +33,62 @@
 #
 #    "before": [
 #        {
-#            "hash-policy": "layer2", 
+#            "hash-policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"
-#                }, 
+#                },
 #                {
 #                    "member": "eth2"
 #                }
-#            ], 
-#            "mode": "active-backup", 
-#            "name": "bond2", 
+#            ],
+#            "mode": "active-backup",
+#            "name": "bond2",
 #            "primary": "eth2"
-#        }, 
+#        },
 #        {
-#            "hash-policy": "layer2", 
+#            "hash-policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth3"
 #                }
-#            ], 
-#            "mode": "802.3ad", 
+#            ],
+#            "mode": "802.3ad",
 #            "name": "bond3"
 #        }
 #    ],
 #
 #    "commands": [
-#        "delete interfaces bonding bond2 hash-policy", 
-#        "delete interfaces ethernet eth1 bond-group bond2", 
-#        "delete interfaces ethernet eth2 bond-group bond2", 
-#        "delete interfaces bonding bond2 mode", 
-#        "delete interfaces bonding bond2 primary", 
-#        "set interfaces bonding bond3 mode 'active-backup'", 
-#        "set interfaces ethernet eth1 bond-group bond3", 
-#        "set interfaces ethernet eth2 bond-group bond3", 
+#        "delete interfaces bonding bond2 hash-policy",
+#        "delete interfaces ethernet eth1 bond-group bond2",
+#        "delete interfaces ethernet eth2 bond-group bond2",
+#        "delete interfaces bonding bond2 mode",
+#        "delete interfaces bonding bond2 primary",
+#        "set interfaces bonding bond3 mode 'active-backup'",
+#        "set interfaces ethernet eth1 bond-group bond3",
+#        "set interfaces ethernet eth2 bond-group bond3",
 #        "set interfaces bonding bond3 primary 'eth3'"
 #    ],
 #
 # "after": [
 #        {
 #            "name": "bond2"
-#        }, 
+#        },
 #        {
-#            "hash-policy": "layer2", 
+#            "hash-policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"
-#                }, 
+#                },
 #                {
 #                    "member": "eth2"
-#                }, 
+#                },
 #                {
 #                    "member": "eth3"
 #                }
-#            ], 
-#            "mode": "active-backup", 
-#            "name": "bond3", 
+#            ],
+#            "mode": "active-backup",
+#            "name": "bond3",
 #            "primary": "eth3"
 #        }
 #    ],
@@ -97,12 +97,12 @@
 # After state
 # ------------
 #
-vyos@vyos:~$ show configuration  commands | grep bond
-set interfaces bonding bond2
-set interfaces bonding bond3 hash-policy 'layer2'
-set interfaces bonding bond3 mode 'active-backup'
-set interfaces bonding bond3 primary 'eth3'
-set interfaces ethernet eth1 bond-group 'bond3'
-set interfaces ethernet eth2 bond-group 'bond3'
-set interfaces ethernet eth3 bond-group 'bond3'
+# vyos@vyos:~$ show configuration  commands | grep bond
+# set interfaces bonding bond2
+# set interfaces bonding bond3 hash-policy 'layer2'
+# set interfaces bonding bond3 mode 'active-backup'
+# set interfaces bonding bond3 primary 'eth3'
+# set interfaces ethernet eth1 bond-group 'bond3'
+# set interfaces ethernet eth2 bond-group 'bond3'
+# set interfaces ethernet eth3 bond-group 'bond3'
 

@@ -16,9 +16,9 @@
 - name: Overrides all device configuration with provided configuration
   vyos_lag_interfaces:
     config:
-     - name: 'eth2'
-       location:
-         elin: 0000000911
+      - name: 'eth2'
+        location:
+          elin: 0000000911
 
     state: overridden
 #
@@ -29,37 +29,37 @@
 #
 # "before": [
 #        {
-#            "enable": false, 
+#            "enable": false,
 #            "location": {
 #                "civic_based": {
 #                    "ca_info": [
 #                        {
-#                            "ca_type": 0, 
+#                            "ca_type": 0,
 #                            "ca_value": "ENGLISH"
 #                        }
-#                    ], 
+#                    ],
 #                    "country_code": "US"
 #                }
-#            }, 
+#            },
 #            "name": "eth2"
-#        }, 
+#        },
 #        {
-#            "enable": false, 
+#            "enable": false,
 #            "location": {
 #                "coordinate_based": {
-#                    "altitude": 2200, 
-#                    "datum": "WGS84", 
-#                    "latitude": "33.524449N", 
+#                    "altitude": 2200,
+#                    "datum": "WGS84",
+#                    "latitude": "33.524449N",
 #                    "longitude": "222.267255W"
 #                }
-#            }, 
+#            },
 #            "name": "eth1"
 #        }
 #    ]
 #
 #    "commands": [
-#        "delete service lldp interface eth2 location", 
-#        "delete service lldp interface eth2 disable", 
+#        "delete service lldp interface eth2 location",
+#        "delete service lldp interface eth2 disable",
 #        "set service lldp interface eth2 location elin 0000000911"
 #
 #
@@ -67,7 +67,7 @@
 #        {
 #            "location": {
 #                "elin": 0000000911
-#            }, 
+#            },
 #            "name": "eth2"
 #        }
 #    ]
@@ -78,4 +78,3 @@
 #
 # vyos@vyos# run show configuration commands | grep lldp
 # set service lldp interface eth2 location elin '0000000911'
-

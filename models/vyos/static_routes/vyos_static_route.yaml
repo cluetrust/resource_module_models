@@ -44,7 +44,7 @@ DOCUMENTATION: |
                   description:
                     - An IPv4/v6 address in CIDR notation that specifies the destination network for the static route.
                   type: str
-                  required: True 
+                  required: True
                 blackhole_config:
                   description:
                     - Configured to silently discard packets.

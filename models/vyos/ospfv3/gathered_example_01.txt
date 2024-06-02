@@ -14,9 +14,9 @@
 # set protocols ospfv3 redistribute 'bgp'
 #
 - name: Gather ospfv3 routes config with provided configurations
-      vyos.vyos.vyos_ospfv3:
-          config:
-          state: gathered
+  vyos.vyos.vyos_ospfv3:
+    config:
+    state: gathered
 #
 #
 # -------------------------

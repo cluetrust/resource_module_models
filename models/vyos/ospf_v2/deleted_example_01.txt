@@ -35,9 +35,9 @@
 # set protocols ospf redistribute bgp metric-type '2'
 #
 - name: Delete attributes of ospfv2 routes.
-      vyos.vyos.vyos_ospfv2:
-        config:
-        state: deleted
+  vyos.vyos.vyos_ospfv2:
+    config:
+    state: deleted
 #
 #
 # ------------------------

@@ -52,7 +52,7 @@
 # ------------------------
 # Module Execution Result
 # ------------------------
-# 
+#
 # "before": [
 #        {
 #            "enable": true,
@@ -155,7 +155,7 @@
 #        }
 #    ]
 #
-# 
+#
 # ------------
 # After state
 # ------------
@@ -180,4 +180,4 @@
 # set interfaces loopback lo
 # set interfaces vti vti1
 #
-# 
+#

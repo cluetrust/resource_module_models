@@ -27,7 +27,7 @@ DOCUMENTATION: |
         enable:
           description:
             - This argument is a boolean value to enable or disable LLDP.
-          type: bool  
+          type: bool
         address:
           description:
             - This argument defines management-address.
@@ -42,7 +42,7 @@ DOCUMENTATION: |
           type: list
           choices:
             - cdp
-            - edp 
+            - edp
             - fdp
             - sonmp
     state:
@@ -54,7 +54,7 @@ DOCUMENTATION: |
       - replaced
       - deleted
       default: merged
-      
+
 EXAMPLES:
   - merged_example_01.txt
   - replaced_example_01.txt

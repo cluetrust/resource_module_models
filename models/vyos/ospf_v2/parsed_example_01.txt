@@ -2,9 +2,9 @@
 #
 #
 - name: Render the commands for provided  configuration
-      vyos.vyos.vyos_ospfv2:
-        running_config: 
-         "set protocols ospf area 2 area-type 'normal'
+  vyos.vyos.vyos_ospfv2:
+    running_config:
+      "set protocols ospf area 2 area-type 'normal'
  set protocols ospf area 2 authentication 'plaintext-password'
  set protocols ospf area 2 shortcut 'enable'
  set protocols ospf area 3 area-type 'nssa'

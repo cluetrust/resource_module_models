@@ -3,29 +3,29 @@
 # Before state:
 # -------------
 #
-# vyos@vyos# run show  configuration commands | grep ospfv3 
-# 
+# vyos@vyos# run show  configuration commands | grep ospfv3
+#
 #
 - name: Merge the provided configuration with the exisiting running configuration
-      vyos.vyos.vyos_ospfv3:
-        config:
-           redistribute:
-             - route_type: 'bgp'
-           parameters:
-             router_id: '192.0.2.10'
-           areas:
-             - area_id: '2'
-               export_list: 'export1'
-               import_list: 'import1'
+  vyos.vyos.vyos_ospfv3:
+    config:
+      redistribute:
+        - route_type: 'bgp'
+      parameters:
+        router_id: '192.0.2.10'
+      areas:
+        - area_id: '2'
+          export_list: 'export1'
+          import_list: 'import1'
 
-               range:
-                 - address: '2001:db10::/32'
-                 - address: '2001:db20::/32'
-                 - address: '2001:db30::/32'
-             - area_id: '3'
-               range:
-                 - address: '2001:db40::/32'
-        state: merged
+          range:
+            - address: '2001:db10::/32'
+            - address: '2001:db20::/32'
+            - address: '2001:db30::/32'
+        - area_id: '3'
+          range:
+            - address: '2001:db40::/32'
+    state: merged
 #
 #
 # -------------------------
@@ -45,7 +45,7 @@
 #       "set protocols ospfv3 area 2 import-list import1",
 #       "set protocols ospfv3 area '3'",
 #       "set protocols ospfv3 area 3 range 2001:db40::/32"
-#       
+#
 #    ]
 #
 # "after": {
@@ -97,4 +97,3 @@
 # set protocols ospfv3 area 3 range '2001:db40::/32'
 # set protocols ospfv3 parameters router-id '192.0.2.10'
 # set protocols ospfv3 redistribute 'bgp'
-

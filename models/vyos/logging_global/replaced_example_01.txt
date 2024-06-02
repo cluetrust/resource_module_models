@@ -21,8 +21,8 @@
       users:
         - username: paul
           facilities:
-          - facility: local7
-            severity: err
+            - facility: local7
+              severity: err
     state: replaced
 
 # Commands Fired:
