@@ -16,9 +16,9 @@
 # set interfaces ethernet eth3 firewall 'out'
 #
 - name: Gather listed firewall interfaces.
-      vyos_firewall_interfaces:
-          config:
-          state: gathered
+  vyos_firewall_interfaces:
+    config:
+    state: gathered
 #
 #
 # -------------------------
@@ -28,45 +28,45 @@
 #    "gathered": [
 #        {
 #            "name": "eth0"
-#        }, 
+#        },
 #        {
 #            "access_rules": [
 #                {
-#                    "afi": "ipv4", 
+#                    "afi": "ipv4",
 #                    "rules": [
 #                        {
-#                            "direction": "out", 
+#                            "direction": "out",
 #                            "name": "OUTBOUND"
 #                        }
 #                    ]
-#                }, 
+#                },
 #                {
-#                    "afi": "ipv6", 
+#                    "afi": "ipv6",
 #                    "rules": [
 #                        {
-#                            "direction": "local", 
+#                            "direction": "local",
 #                            "name": "V6-LOCAL"
 #                        }
 #                    ]
 #                }
-#            ], 
+#            ],
 #            "name": "eth1"
-#        }, 
+#        },
 #        {
 #            "name": "eth2"
-#        }, 
+#        },
 #        {
 #            "access_rules": [
 #                {
-#                    "afi": "ipv4", 
+#                    "afi": "ipv4",
 #                    "rules": [
 #                        {
-#                            "direction": "in", 
+#                            "direction": "in",
 #                            "name": "INBOUND"
 #                        }
 #                    ]
 #                }
-#            ], 
+#            ],
 #            "name": "eth3"
 #        }
 #    ]

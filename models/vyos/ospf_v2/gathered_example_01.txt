@@ -35,9 +35,9 @@
 # set protocols ospf redistribute bgp metric-type '2'
 #
 - name: Gather ospfv2 routes config with provided configurations
-      vyos.vyos.vyos_ospfv2:
-          config:
-          state: gathered
+  vyos.vyos.vyos_ospfv2:
+    config:
+    state: gathered
 #
 #
 # -------------------------

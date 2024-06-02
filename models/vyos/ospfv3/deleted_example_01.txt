@@ -14,9 +14,9 @@
 # set protocols ospfv3 redistribute 'bgp'
 #
 - name: Delete attributes of ospfv3 routes.
-      vyos.vyos.vyos_ospfv3:
-        config:
-        state: deleted
+  vyos.vyos.vyos_ospfv3:
+    config:
+    state: deleted
 #
 #
 # ------------------------

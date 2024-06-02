@@ -24,10 +24,10 @@
       - name: eth2
         description: 'Configured by Ansible'
         enable: True
-	vifs:
-	  - vlan_id: 200
-	    description: "VIF 200 - ETH2"
-        
+        vifs:
+          - vlan_id: 200
+            description: "VIF 200 - ETH2"
+
       - name: eth3
         description: 'Configured by Ansible'
         mtu: 1500
@@ -35,7 +35,7 @@
       - name: bond1
         description: 'Bond - 1'
         mtu: 1200
- 
+
       - name: vti2
         description: 'VTI - 2'
         enable: false

@@ -14,25 +14,25 @@
 # set protocols ospfv3 redistribute 'bgp'
 #
 - name: Replace ospfv3 routes attributes configuration.
-      vyos.vyos.vyos_ospfv3:
-        config:
-           redistribute:
-             - route_type: 'bgp'
-           parameters:
-             router_id: '192.0.2.10'
-           areas:
-             - area_id: '2'
-               export_list: 'export1'
-               import_list: 'import1'
+  vyos.vyos.vyos_ospfv3:
+    config:
+      redistribute:
+        - route_type: 'bgp'
+      parameters:
+        router_id: '192.0.2.10'
+      areas:
+        - area_id: '2'
+          export_list: 'export1'
+          import_list: 'import1'
 
-               range:
-                 - address: '2001:db10::/32'
-                 - address: '2001:db30::/32'
-                 - address: '2001:db50::/32'
-             - area_id: '4'
-               range:
-                 - address: '2001:db60::/32'
-        state: replaced
+          range:
+            - address: '2001:db10::/32'
+            - address: '2001:db30::/32'
+            - address: '2001:db50::/32'
+        - area_id: '4'
+          range:
+            - address: '2001:db60::/32'
+    state: replaced
 #
 #
 # -------------------------
@@ -82,7 +82,7 @@
 #     "set protocols ospfv3 area 2 range 2001:db50::/32",
 #     "set protocols ospfv3 area '4'",
 #     "set protocols ospfv3 area 4 range 2001:db60::/32"
-#     
+#
 #    ]
 #
 #    "after": {
@@ -121,7 +121,7 @@
 #            }
 #        ]
 #    }
-# 
+#
 # After state:
 # -------------
 #

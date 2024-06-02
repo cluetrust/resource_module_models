@@ -18,11 +18,11 @@
 # set interfaces ethernet eth3 firewall out name 'OUTBOUND'
 #
 - name: Delete firewall interfaces.
-      vyos_firewall_interfaces:
-        config:
-          - name: 'eth1'
-          - name: 'eth3'
-        state: deleted
+  vyos_firewall_interfaces:
+    config:
+      - name: 'eth1'
+      - name: 'eth3'
+    state: deleted
 #
 #
 # ------------------------
@@ -39,58 +39,58 @@
 #                    "afi": "ipv4",
 #                    "rules": [
 #                        {
-#                            "direction": "in", 
+#                            "direction": "in",
 #                            "name": "INBOUND"
-#                        }, 
+#                        },
 #                        {
-#                            "direction": "local", 
+#                            "direction": "local",
 #                            "name": "LOCAL"
-#                        }, 
+#                        },
 #                        {
-#                            "direction": "out", 
+#                            "direction": "out",
 #                            "name": "OUTBOUND"
 #                        }
 #                    ]
-#                }, 
+#                },
 #                {
-#                    "afi": "ipv6", 
+#                    "afi": "ipv6",
 #                    "rules": [
 #                        {
-#                            "direction": "local", 
+#                            "direction": "local",
 #                            "name": "V6-LOCAL"
 #                        }
 #                    ]
 #                }
-#            ], 
+#            ],
 #            "name": "eth1"
-#        }, 
+#        },
 #        {
 #            "name": "eth2"
-#        }, 
+#        },
 #        {
 #            "access_rules": [
 #                {
-#                    "afi": "ipv4", 
+#                    "afi": "ipv4",
 #                    "rules": [
 #                        {
-#                            "direction": "in", 
+#                            "direction": "in",
 #                            "name": "INBOUND"
-#                        }, 
+#                        },
 #                        {
-#                            "direction": "local", 
+#                            "direction": "local",
 #                            "name": "LOCAL"
-#                        }, 
+#                        },
 #                        {
-#                            "direction": "out", 
+#                            "direction": "out",
 #                            "name": "OUTBOUND"
 #                        }
 #                    ]
-#                }, 
+#                },
 #                {
-#                    "afi": "ipv6", 
+#                    "afi": "ipv6",
 #                    "rules": [
 #                        {
-#                            "direction": "local", 
+#                            "direction": "local",
 #                            "name": "V6-LOCAL"
 #                        }
 #                    ]
@@ -100,20 +100,20 @@
 #        }
 #    ]
 #    "commands": [
-#        "delete interfaces ethernet eth1 firewall", 
+#        "delete interfaces ethernet eth1 firewall",
 #        "delete interfaces ethernet eth3 firewall"
 #    ]
 #
 # "after": [
         {
             "name": "eth0"
-        }, 
+        },
         {
             "name": "eth1"
-        }, 
+        },
         {
             "name": "eth2"
-        }, 
+        },
         {
             "name": "eth3"
         }

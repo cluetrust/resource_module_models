@@ -20,9 +20,9 @@
 # set interfaces ethernet eth3 vif 101 address '198.51.100.130/25'
 # set interfaces ethernet eth3 vif 101 address '198.51.100.131/25'
 # set interfaces ethernet eth3 vif 102 address '2001:db8:4000::3/34'
-# set interfaces ethernet eth3 vif 102 address '2001:db8:4000::2/34' 
+# set interfaces ethernet eth3 vif 102 address '2001:db8:4000::2/34'
 
-- name: Delete L3 attributes of given interfaces (Note: This won't delete the interface itself)
+- name: "Delete L3 attributes of given interfaces (Note: This won't delete the interface itself)"
   vyos_l3_interfaces:
     config:
       - name: eth1

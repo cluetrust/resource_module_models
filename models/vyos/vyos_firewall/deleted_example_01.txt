@@ -24,18 +24,18 @@
 # set firewall syn-cookies 'enable'
 # set firewall twa-hazards-protection 'enable'
 - name: Delete attributes of firewall.
-      vyos_firewall_global:
-        config:
-          state_policy:
-          config_trap:
-          log_martians:        
-          syn_cookies:
-          twa_hazards_protection:
-          route_redirects:
-          state_policy:        
-          ping:
-          group:
-        state: deleted
+  vyos_firewall_global:
+    config:
+      state_policy:
+      config_trap:
+      log_martians:
+      syn_cookies:
+      twa_hazards_protection:
+      route_redirects:
+      state_policy:
+      ping:
+      group:
+    state: deleted
 #
 #
 # ------------------------
@@ -43,11 +43,11 @@
 # ------------------------
 #
 #    "before": {
-#        "config_trap": true, 
+#        "config_trap": true,
 #        "group": {
 #            "address_group": [
 #                {
-#                    "description": "This group has the Management hosts address list", 
+#                    "description": "This group has the Management hosts address list",
 #                    "members": [
 #                        {
 #                            "address": "192.0.1.1"
@@ -61,10 +61,10 @@
 #                    ],
 #                    "name": "MGMT-HOSTS"
 #                }
-#            ], 
+#            ],
 #            "network_group": [
 #                {
-#                    "description": "This group has the Management network addresses", 
+#                    "description": "This group has the Management network addresses",
 #                    "members": [
 #                        {
 #                            "address": "192.0.1.0/24"
@@ -73,49 +73,49 @@
 #                    "name": "MGMT"
 #                }
 #            ]
-#        }, 
-#        "log_martians": true, 
+#        },
+#        "log_martians": true,
 #        "ping": {
-#            "all": true, 
+#            "all": true,
 #            "broadcast": true
-#        }, 
+#        },
 #        "route_redirects": [
 #            {
-#                "afi": "ipv4", 
+#                "afi": "ipv4",
 #                "icmp_redirects": {
-#                    "receive": false, 
+#                    "receive": false,
 #                    "send": true
-#                }, 
+#                },
 #                "ip_src_route": true
 #            }
-#        ], 
+#        ],
 #        "state_policy": [
 #            {
-#                "action": "accept", 
-#                "connection_type": "established", 
+#                "action": "accept",
+#                "connection_type": "established",
 #                "log": true
-#            }, 
+#            },
 #            {
-#                "action": "reject", 
+#                "action": "reject",
 #                "connection_type": "invalid"
 #            }
-#        ], 
-#        "syn_cookies": true, 
-#        "twa_hazards_protection": true, 
+#        ],
+#        "syn_cookies": true,
+#        "twa_hazards_protection": true,
 #        "validation": "strict"
 #    }
 # "commands": [
-#        "delete firewall source-validation", 
-#        "delete firewall group", 
-#        "delete firewall log-martians", 
-#        "delete firewall ip-src-route", 
-#        "delete firewall receive-redirects", 
-#        "delete firewall send-redirects", 
-#        "delete firewall config-trap", 
-#        "delete firewall state-policy", 
-#        "delete firewall syn-cookies", 
-#        "delete firewall broadcast-ping", 
-#        "delete firewall all-ping", 
+#        "delete firewall source-validation",
+#        "delete firewall group",
+#        "delete firewall log-martians",
+#        "delete firewall ip-src-route",
+#        "delete firewall receive-redirects",
+#        "delete firewall send-redirects",
+#        "delete firewall config-trap",
+#        "delete firewall state-policy",
+#        "delete firewall syn-cookies",
+#        "delete firewall broadcast-ping",
+#        "delete firewall all-ping",
 #        "delete firewall twa-hazards-protection"
 #    ]
 #

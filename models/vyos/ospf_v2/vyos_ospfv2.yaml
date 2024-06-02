@@ -42,7 +42,7 @@ DOCUMENTATION: |
                   description: NSSA OSPFv2 area.
                   type: dict
                   suboptions:
-                    set: 
+                    set:
                       description: Enabling NSSA.
                       type: bool
                     default_cost:
@@ -51,15 +51,15 @@ DOCUMENTATION: |
                     no_summary:
                       description: Do not inject inter-area routes into stub.
                       type: bool
-                    translate: 
+                    translate:
                       description: Specify NSSA translator.
                       type: str
                       choices: ['always', 'candidate', 'never']
-                stub: 
+                stub:
                   description: Stub OSPFv2 area.
                   type: dict
                   suboptions:
-                    set: 
+                    set:
                       description: Enabling stub.
                       type: bool
                     default_cost:
@@ -80,7 +80,7 @@ DOCUMENTATION: |
                 address:
                   required: True
                   description: OSPFv2 IPv4 network address.
-                  type: str 
+                  type: str
             range:
               description: Summarize routes matching prefix (border routers only).
               type: list
@@ -134,7 +134,7 @@ DOCUMENTATION: |
                 hello_interval:
                   description: Interval between hello packets.
                   type: int
-                retransmit_interval: 
+                retransmit_interval:
                   description: Interval between retransmitting lost link state advertisements.
                   type: int
                 transmit_delay:
@@ -144,7 +144,7 @@ DOCUMENTATION: |
            description: Log changes in adjacency state.
            type: str
            choices: ['detail']
-        max_metric: 
+        max_metric:
           description: OSPFv2 maximum/infinite-distance metric.
           type: dict
           suboptions:
@@ -157,10 +157,10 @@ DOCUMENTATION: |
                   type: bool
                 on_shutdown:
                   description: Time to advertise self as stub-router.
-                  type: int   
+                  type: int
                 on_startup:
                   description: Time to advertise self as stub-router
-                  type: int   
+                  type: int
         auto_cost:
           description: Calculate OSPFv2 interface cost according to bandwidth.
           type: dict
@@ -187,7 +187,7 @@ DOCUMENTATION: |
                   type: int
                 route_map:
                   description: Route map references.
-                  type: str           
+                  type: str
         default_metric:
           description: Metric of redistributed routes.
           type: int
@@ -198,11 +198,11 @@ DOCUMENTATION: |
             global:
               description: Global OSPFv2 administrative distance.
               type: int
-            ospf: 
+            ospf:
               description: OSPFv2 administrative distance.
               type: dict
               suboptions:
-                external: 
+                external:
                   description: Distance for external routes.
                   type: int
                 inter_area:
@@ -229,18 +229,18 @@ DOCUMENTATION: |
           suboptions:
             neighbor_id:
               description: Identity (number/IP address) of neighbor.
-              type: str 
+              type: str
             poll_interval:
               description: Seconds between dead neighbor polling interval.
               type: int
             priority:
               description: Neighbor priority.
-              type: int       
+              type: int
         parameters:
           descriptions: OSPFv2 specific parameters.
           type: dict
-          suboptions: 
-           abr_type: 
+          suboptions:
+           abr_type:
              description: OSPFv2 ABR Type.
              type: str
              choices: ['cisco', 'ibm', 'shortcut', 'standard']
@@ -250,7 +250,7 @@ DOCUMENTATION: |
            rfc1583_compatibility:
              description: Enable rfc1583 criteria for handling AS external routes.
              type: bool
-           router_id: 
+           router_id:
              description: Override the default router identifier.
              type: str
         passive_interface:
@@ -259,11 +259,11 @@ DOCUMENTATION: |
         passive_interface_exclude:
           description: Interface to exclude when using passive-interface default.
           type: list
-        redistribute:  
+        redistribute:
           description: Redistribute information from another routing protocol.
           type: list
           elements: dict
-          suboptions: 
+          suboptions:
             route_type:
               description: Route type to redistribute.
               type: str
@@ -276,10 +276,10 @@ DOCUMENTATION: |
               type: int
             route_map:
               description: Route map references.
-              type: str 
-        
+              type: str
+
         route_map:
-          description: Filter routes installed in local route map.       
+          description: Filter routes installed in local route map.
           type: list
         timers:
           description: Adjust routing timers.

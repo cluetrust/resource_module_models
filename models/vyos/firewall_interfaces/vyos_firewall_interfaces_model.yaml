@@ -46,7 +46,7 @@ DOCUMENTATION: |
                 - Specifies the firewall rules for the provided AFI.
               type: list
               elements: dict
-              suboptions: 
+              suboptions:
                 name:
                   description:
                     - Specifies the name of the IPv4/IPv6 Firewall rule for the interface.
@@ -56,7 +56,7 @@ DOCUMENTATION: |
                     - Specifies the direction of packets that the firewall rule will be applied on.
                   type: str
                   choices: ['in', 'local', 'out']
-                  required: True  
+                  required: True
     state:
       description:
         - The state the configuration should be left in.
@@ -70,7 +70,7 @@ DOCUMENTATION: |
       - rendered
       - gathered
       default: merged
-      
+
 EXAMPLES:
   - merged_example_01.txt
   - replaced_example_01.txt

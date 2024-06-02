@@ -50,7 +50,7 @@
 #                            "blackhole_config": {
 #                                "distance": 2
 #                            },
-#                            "dest": "2001:db8:1000::/36", 
+#                            "dest": "2001:db8:1000::/36",
 #                            "next_hops": [
 #                                {
 #                                    "forward_router_address": "2001:db8:2000:2::1"

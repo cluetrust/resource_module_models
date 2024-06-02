@@ -45,8 +45,8 @@ DOCUMENTATION: |
               type: dict
               suboptions:
                 ca_info:
-                   description: LLDP-MED address info 
-                   type: list      
+                   description: LLDP-MED address info
+                   type: list
                    elements: dict
                    suboptions:
                      ca_type:
@@ -58,7 +58,7 @@ DOCUMENTATION: |
                        type: str
                        reqired: True
                 country_code:
-                  description: Country Code 
+                  description: Country Code
                   type: str
                   required: True
             coordinate_based:
@@ -94,7 +94,7 @@ DOCUMENTATION: |
       - overridden
       - deleted
       default: merged
-      
+
 EXAMPLES:
   - merged_example_01.txt
   - replaced_example_01.txt

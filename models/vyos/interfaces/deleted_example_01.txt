@@ -34,7 +34,7 @@
 # set interfaces loopback lo
 #
 #
-- name: Delete attributes of given interfaces (Note: This won't delete the interfaces themselves)
+- name: "Delete attributes of given interfaces (Note: This won't delete the interfaces themselves)"
   vyos_interfaces:
     config:
       - name: bond1
@@ -150,7 +150,7 @@
 #        }
 #    ]
 #
-# 
+#
 # ------------
 # After state
 # ------------

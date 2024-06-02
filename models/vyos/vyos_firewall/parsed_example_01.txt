@@ -2,9 +2,9 @@
 #
 #
 - name: Render the commands for provided  configuration
-      vyos_firewall_global:
-        running_config: 
-         "set firewall all-ping 'enable'
+  vyos_firewall_global:
+    running_config:
+      "set firewall all-ping 'enable'
   set firewall broadcast-ping 'enable'
   set firewall config-trap 'enable'
   set firewall group address-group ENG-HOSTS address '192.0.3.1'
@@ -26,7 +26,7 @@
   set firewall state-policy invalid action 'reject'
   set firewall syn-cookies 'enable'
   set firewall twa-hazards-protection 'enable'"
-        state: parsed
+    state: parsed
 #
 #
 # -------------------------
@@ -35,11 +35,11 @@
 #
 #
 # "parsed": {
-#        "config_trap": true, 
+#        "config_trap": true,
 #        "group": {
 #            "address_group": [
 #                {
-#                    "description": "Sales office hosts address list", 
+#                    "description": "Sales office hosts address list",
 #                    "members": [
 #                        {
 #                            "address": "192.0.3.1"
@@ -47,11 +47,11 @@
 #                        {
 #                            "address": "192.0.3.2"
 #                        }
-#                    ], 
+#                    ],
 #                    "name": "ENG-HOSTS"
-#                }, 
+#                },
 #                {
-#                    "description": "Sales office hosts address list", 
+#                    "description": "Sales office hosts address list",
 #                    "members": [
 #                        {
 #                            "address": "192.0.2.1"
@@ -62,50 +62,50 @@
 #                        {
 #                            "address": "192.0.2.3"
 #                        }
-#                    ], 
+#                    ],
 #                    "name": "SALES-HOSTS"
 #                }
-#            ], 
+#            ],
 #            "network_group": [
 #                {
-#                    "description": "This group has the Management network addresses", 
+#                    "description": "This group has the Management network addresses",
 #                    "members": [
 #                        {
 #                            "address": "192.0.1.0/24"
 #                        }
-#                    ], 
+#                    ],
 #                    "name": "MGMT"
 #                }
 #            ]
-#        }, 
-#        "log_martians": true, 
+#        },
+#        "log_martians": true,
 #        "ping": {
-#            "all": true, 
+#            "all": true,
 #            "broadcast": true
-#        }, 
+#        },
 #        "route_redirects": [
 #            {
-#                "afi": "ipv4", 
+#                "afi": "ipv4",
 #                "icmp_redirects": {
-#                    "receive": false, 
+#                    "receive": false,
 #                    "send": true
-#                }, 
+#                },
 #                "ip_src_route": true
 #            }
-#        ], 
+#        ],
 #        "state_policy": [
 #            {
-#                "action": "accept", 
-#                "connection_type": "established", 
+#                "action": "accept",
+#                "connection_type": "established",
 #                "log": true
-#            }, 
+#            },
 #            {
-#                "action": "reject", 
+#                "action": "reject",
 #                "connection_type": "invalid"
 #            }
-#        ], 
-#        "syn_cookies": true, 
-#        "twa_hazards_protection": true, 
+#        ],
+#        "syn_cookies": true,
+#        "twa_hazards_protection": true,
 #        "validation": "strict"
 #    }
 # }

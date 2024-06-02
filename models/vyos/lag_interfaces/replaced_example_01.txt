@@ -20,8 +20,8 @@
       - name: bond3
         mode: '802.3ad'
         hash-policy: 'layer2'
-        members: 
-         - member: eth3
+        members:
+          - member: eth3
     state: replaced
 #
 #
@@ -31,61 +31,61 @@
 #
 #    "before": [
 #        {
-#            "hash-policy": "layer2", 
+#            "hash-policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"
-#                }, 
+#                },
 #                {
 #                    "member": "eth2"
 #                }
-#            ], 
-#            "mode": "active-backup", 
-#            "name": "bond2", 
+#            ],
+#            "mode": "active-backup",
+#            "name": "bond2",
 #            "primary": "eth2"
-#        }, 
+#        },
 #        {
-#            "hash-policy": "layer2+3", 
+#            "hash-policy": "layer2+3",
 #            "members": [
 #                {
 #                    "member": "eth3"
 #                }
-#            ], 
-#            "mode": "active-backup", 
-#            "name": "bond3", 
+#            ],
+#            "mode": "active-backup",
+#            "name": "bond3",
 #            "primary": "eth3"
 #        }
 #    ],
 #
 # "commands": [
-#        "delete interfaces bonding bond3 primary", 
-#        "set interfaces bonding bond3 hash-policy 'layer2'", 
+#        "delete interfaces bonding bond3 primary",
+#        "set interfaces bonding bond3 hash-policy 'layer2'",
 #        "set interfaces bonding bond3 mode '802.3ad'"
 #    ],
 #
 # "after": [
 #        {
-#            "hash-policy": "layer2", 
+#            "hash-policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"
-#                }, 
+#                },
 #                {
 #                    "member": "eth2"
 #                }
-#            ], 
-#            "mode": "active-backup", 
-#            "name": "bond2", 
+#            ],
+#            "mode": "active-backup",
+#            "name": "bond2",
 #            "primary": "eth2"
-#        }, 
+#        },
 #        {
-#            "hash-policy": "layer2", 
+#            "hash-policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth3"
 #                }
-#            ], 
-#            "mode": "802.3ad", 
+#            ],
+#            "mode": "802.3ad",
 #            "name": "bond3"
 #        }
 #    ],

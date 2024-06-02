@@ -2,19 +2,19 @@
 #
 #
 - name: Render the commands for provided  configuration
-      vyos_firewall_interfaces:
-        config:
-          - name: 'eth2'
-            access_rules:
-            - afi: 'ipv4'
-              rules:
-                - name: 'INGRESS'
-                  direction: 'in'
-                - name: 'OUTGRESS'
-                  direction: 'out'
-                - name: 'DROP'
-                  direction: 'local'
-        state: rendered
+  vyos_firewall_interfaces:
+    config:
+      - name: 'eth2'
+        access_rules:
+        - afi: 'ipv4'
+          rules:
+            - name: 'INGRESS'
+              direction: 'in'
+            - name: 'OUTGRESS'
+              direction: 'out'
+            - name: 'DROP'
+              direction: 'local'
+    state: rendered
 #
 #
 # -------------------------
@@ -23,8 +23,8 @@
 #
 #
 # "rendered": [
-#        "set interfaces ethernet eth2 firewall in name 'INGRESS'", 
-#        "set interfaces ethernet eth2 firewall out name 'OUTGRESS'", 
+#        "set interfaces ethernet eth2 firewall in name 'INGRESS'",
+#        "set interfaces ethernet eth2 firewall out name 'OUTGRESS'",
 #        "set interfaces ethernet eth2 firewall local name 'DROP'",
 #        "set interfaces ethernet eth2 firewall local ipv6-name 'LOCAL'"
 #    ]
