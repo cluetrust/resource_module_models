@@ -17,25 +17,27 @@
 # set interfaces ethernet eth3 firewall local name 'LOCAL'
 # set interfaces ethernet eth3 firewall out name 'OUTBOUND'
 #
-- name: Replace device configurations of listed firewall interfaces with provided configurations
-  vyos_firewall_interfaces:
+- name: >-
+    Replace device configurations of listed firewall interfaces with provided
+    configurations
+  vyos.vyos.vyos_firewall_interfaces:
     config:
-      - name: 'eth1'
+      - name: eth1
         access_rules:
-          - afi: 'ipv4'
+          - afi: ipv4
             rules:
-              - name: 'OUTBOUND'
-                direction: 'out'
-          - afi: 'ipv6'
+              - name: OUTBOUND
+                direction: out
+          - afi: ipv6
             rules:
-              - name: 'V6-LOCAL'
-                direction: 'local'
-      - name: 'eth3'
+              - name: V6-LOCAL
+                direction: local
+      - name: eth3
         access_rules:
-          - afi: 'ipv4'
+          - afi: ipv4
             rules:
-              - name: 'INBOUND'
-                direction: 'in'
+              - name: INBOUND
+                direction: in
     state: replaced
 #
 #
@@ -122,7 +124,7 @@
 #        "delete interfaces ethernet eth3 firewall local ipv6-name"
 #    ]
 #
-#    "after":[
+#    "after": [
 #        {
 #            "name": "eth0"
 #        },

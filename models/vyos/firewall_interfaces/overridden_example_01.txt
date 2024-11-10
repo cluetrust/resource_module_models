@@ -16,14 +16,14 @@
 # set interfaces ethernet eth3 firewall 'out'
 #
 - name: Overrides all device configuration with provided configuration
-  vyos_firewall_interfaces:
+  vyos.vyos.vyos_firewall_interfaces:
     config:
-      - name: 'eth3'
+      - name: eth3
         access_rules:
-          - afi: 'ipv4'
+          - afi: ipv4
             rules:
-              - name: 'INBOUND'
-                direction: 'out'
+              - name: INBOUND
+                direction: out
     state: overridden
 #
 #
@@ -81,9 +81,9 @@
 #        "delete interfaces ethernet eth1 firewall",
 #        "delete interfaces ethernet eth3 firewall in name",
 #        "set interfaces ethernet eth3 firewall out name 'INBOUND'"
+#    ]
 #
-#
-#    "after":[
+#    "after": [
 #        {
 #            "name": "eth0"
 #        },

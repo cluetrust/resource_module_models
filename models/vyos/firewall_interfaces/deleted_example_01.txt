@@ -1,4 +1,4 @@
-# Using deleted
+# Using deleted per interface name
 #
 # Before state
 # -------------
@@ -17,11 +17,11 @@
 # set interfaces ethernet eth3 firewall local name 'LOCAL'
 # set interfaces ethernet eth3 firewall out name 'OUTBOUND'
 #
-- name: Delete firewall interfaces.
-  vyos_firewall_interfaces:
+- name: Delete firewall interfaces based on interface name.
+  vyos.vyos.vyos_firewall_interfaces:
     config:
-      - name: 'eth1'
-      - name: 'eth3'
+      - name: eth1
+      - name: eth3
     state: deleted
 #
 #
@@ -104,20 +104,7 @@
 #        "delete interfaces ethernet eth3 firewall"
 #    ]
 #
-# "after": [
-        {
-            "name": "eth0"
-        },
-        {
-            "name": "eth1"
-        },
-        {
-            "name": "eth2"
-        },
-        {
-            "name": "eth3"
-        }
-    ]
+#    "after" : []
 # After state
 # ------------
 # vyos@vyos# run show configuration commands | grep firewall

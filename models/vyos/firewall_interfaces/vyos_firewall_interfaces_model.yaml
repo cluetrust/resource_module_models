@@ -17,7 +17,7 @@ DOCUMENTATION: |
   short_description: Manage firewall rules attributes of interfaces on VyOS devices
   description: Manage firewall rules of interfaces on VyOS network devices.
   author:
-   - Rohit Thakur (@rohitthakur2590)
+  - Rohit Thakur (@rohitthakur2590)
   options:
     config:
       description: A list of firewall rules options for interfaces.
@@ -26,40 +26,56 @@ DOCUMENTATION: |
       suboptions:
         name:
           description:
-            - Name/Identifier for the interface.
+          - Name/Identifier for the interface.
           type: str
-          required: True
+          required: true
         access_rules:
           description:
-            - Specifies firewall rules attached to the interfaces.
+          - Specifies firewall rules attached to the interfaces.
           type: list
           elements: dict
           suboptions:
             afi:
               description:
-                - Specifies the AFI for the Firewall rules to be configured on this interface.
+              - Specifies the AFI for the Firewall rules to be configured on this interface.
               type: str
-              choices: ['ipv4', 'ipv6']
-              required: True
+              choices:
+              - ipv4
+              - ipv6
+              required: true
             rules:
               description:
-                - Specifies the firewall rules for the provided AFI.
+              - Specifies the firewall rules for the provided AFI.
               type: list
               elements: dict
               suboptions:
                 name:
                   description:
-                    - Specifies the name of the IPv4/IPv6 Firewall rule for the interface.
+                  - Specifies the name of the IPv4/IPv6 Firewall rule for the interface.
                   type: str
                 direction:
                   description:
-                    - Specifies the direction of packets that the firewall rule will be applied on.
+                  - Specifies the direction of packets that the firewall rule will be
+                    applied on.
                   type: str
-                  choices: ['in', 'local', 'out']
-                  required: True
+                  choices:
+                  - in
+                  - local
+                  - out
+                  required: true
+    running_config:
+      description:
+      - The module, by default, will connect to the remote device and retrieve the current
+        running-config to use as a base for comparing against the contents of source.
+        There are times when it is not desirable to have the task get the current running-config
+        for every task in a playbook.  The I(running_config) argument allows the implementer
+        to pass in the configuration to use as the base config for comparison. This
+        value of this option should be the output received from device by executing
+        command C(show configuration commands | grep 'firewall').
+      type: str
     state:
       description:
-        - The state the configuration should be left in.
+      - The state the configuration should be left in.
       type: str
       choices:
       - merged
@@ -70,12 +86,58 @@ DOCUMENTATION: |
       - rendered
       - gathered
       default: merged
+RETURN: |
+  before:
+    description: The configuration prior to the module execution.
+    returned: when I(state) is C(merged), C(replaced), C(overridden), C(deleted) or C(purged)
+    type: dict
+    sample: >
+      This output will always be in the same format as the
+      module argspec.
+  after:
+    description: The resulting configuration after module execution.
+    returned: when changed
+    type: dict
+    sample: >
+      This output will always be in the same format as the
+      module argspec.
+  commands:
+    description: The set of commands pushed to the remote device.
+    returned: always
+    type: list
+    sample:
+      - "set interfaces ethernet eth1 firewall local ipv6-name 'V6-LOCAL'"
+      - "set interfaces ethernet eth3 firewall in name 'INBOUND'"
+  rendered:
+    description: The provided configuration in the task rendered in device-native format (offline).
+    returned: when I(state) is C(rendered)
+    type: list
+    sample:
+      - "set interfaces ethernet eth1 firewall local ipv6-name 'V6-LOCAL'"
+      - "set interfaces ethernet eth3 firewall in name 'INBOUND'"
+  gathered:
+    description: Facts about the network resource gathered from the remote device as structured data.
+    returned: when I(state) is C(gathered)
+    type: list
+    sample: >
+      This output will always be in the same format as the
+      module argspec.
+  parsed:
+    description: The device native config provided in I(running_config) option parsed into structured data as per module argspec.
+    returned: when I(state) is C(parsed)
+    type: list
+    sample: >
+      This output will always be in the same format as the
+      module argspec.
 
 EXAMPLES:
   - merged_example_01.txt
+  - merged_example_02.txt
   - replaced_example_01.txt
   - overridden_example_01.txt
   - deleted_example_01.txt
+  - deleted_example_02.txt
+  - deleted_example_03.txt
   - parsed_example_01.txt
   - gathered_example_01.txt
   - rendered_example_01.txt

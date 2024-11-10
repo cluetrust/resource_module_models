@@ -16,8 +16,7 @@
 # set interfaces ethernet eth3 firewall 'out'
 #
 - name: Gather listed firewall interfaces.
-  vyos_firewall_interfaces:
-    config:
+  vyos.vyos.vyos_firewall_interfaces:
     state: gathered
 #
 #

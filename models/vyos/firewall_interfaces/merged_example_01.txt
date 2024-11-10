@@ -10,36 +10,36 @@
 # set firewall name 'OUTBOUND'
 #
 - name: Merge the provided configuration with the existing running configuration
-  vyos_firewall_interfaces:
+  vyos.vyos.vyos_firewall_interfaces:
     config:
       - access_rules:
-          - afi: 'ipv4'
+          - afi: ipv4
             rules:
-              - name: 'INBOUND'
-                direction: 'in'
-              - name: 'OUTBOUND'
-                direction: 'out'
-              - name: 'LOCAL'
-                direction: 'local'
-          - afi: 'ipv6'
+              - name: INBOUND
+                direction: in
+              - name: OUTBOUND
+                direction: out
+              - name: LOCAL
+                direction: local
+          - afi: ipv6
             rules:
-              - name: 'V6-LOCAL'
-                direction: 'local'
-        name: 'eth1'
+              - name: V6-LOCAL
+                direction: local
+        name: eth1
       - access_rules:
-          - afi: 'ipv4'
+          - afi: ipv4
             rules:
-              - name: 'INBOUND'
-                direction: 'in'
-              - name: 'OUTBOUND'
-                direction: 'out'
-              - name: 'LOCAL'
-                direction: 'local'
-          - afi: 'ipv6'
+              - name: INBOUND
+                direction: in
+              - name: OUTBOUND
+                direction: out
+              - name: LOCAL
+                direction: local
+          - afi: ipv6
             rules:
-              - name: 'V6-LOCAL'
-                direction: 'local'
-        name: 'eth3'
+              - name: V6-LOCAL
+                direction: local
+        name: eth3
     state: merged
 #
 #

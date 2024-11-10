@@ -2,18 +2,18 @@
 #
 #
 - name: Render the commands for provided  configuration
-  vyos_firewall_interfaces:
+  vyos.vyos.vyos_firewall_interfaces:
     config:
-      - name: 'eth2'
+      - name: eth2
         access_rules:
-        - afi: 'ipv4'
+        - afi: ipv4
           rules:
-            - name: 'INGRESS'
-              direction: 'in'
-            - name: 'OUTGRESS'
-              direction: 'out'
-            - name: 'DROP'
-              direction: 'local'
+            - name: INGRESS
+              direction: in
+            - name: OUTGRESS
+              direction: out
+            - name: DROP
+              direction: local
     state: rendered
 #
 #
