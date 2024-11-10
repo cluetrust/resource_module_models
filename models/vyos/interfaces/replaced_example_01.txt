@@ -1,9 +1,6 @@
 # Using replaced
-#
-# -------------
 # Before state:
 # -------------
-#
 # vyos:~$ show configuration commands | grep eth
 # set interfaces bonding bond1 description 'Bond - 1'
 # set interfaces bonding bond1 mtu '1400'
@@ -32,137 +29,93 @@
 # set interfaces ethernet eth3 smp_affinity 'auto'
 # set interfaces ethernet eth3 speed '100'
 # set interfaces loopback lo
-#
-#
+
 - name: Replace device configurations of listed interfaces with provided configurations
-  vyos_interfaces:
+  vyos.vyos.vyos_interfaces:
     config:
       - name: eth2
-        description: "Replaced by Ansible"
-
+        description: Replaced by Ansible
       - name: eth3
-        description: "Replaced by Ansible"
-
+        description: Replaced by Ansible
       - name: eth1
-        description: "Replaced by Ansible"
+        description: Replaced by Ansible
     state: replaced
-#
-#
-# -----------------------
-# Module Execution Result
-# -----------------------
-#
-# "before": [
-#        {
-#            "description": "Bond - 1",
-#            "enable": true,
-#            "mtu": 1400,
-#            "name": "bond1"
-#        },
-#        {
-#            "enable": true,
-#            "name": "lo"
-#        },
-#        {
-#            "description": "Configured by Ansible",
-#            "duplex": "full",
-#            "enable": true,
-#            "mtu": 1500,
-#            "name": "eth3",
-#            "speed": "100"
-#        },
-#        {
-#            "description": "Configured by Ansible",
-#            "duplex": "full",
-#            "enable": true,
-#            "mtu": 500,
-#            "name": "eth2",
-#            "speed": "100",
-#            "vifs": [
-#                {
-#                    "description": "VIF 200 - ETH2",
-#                    "enable": true,
-#                    "vlan_id": "200"
-#                }
-#            ]
-#        },
-#        {
-#            "description": "Configured by Ansible Eng Team",
-#            "duplex": "full",
-#            "enable": true,
-#            "name": "eth1",
-#            "speed": "100"
-#        },
-#        {
-#            "description": "Management Interface for the Appliance",
-#            "duplex": "auto",
-#            "enable": true,
-#            "name": "eth0",
-#            "speed": "auto"
-#        }
-#    ]
-#
-# "commands": [
-#        "delete interfaces ethernet eth2 speed",
-#        "delete interfaces ethernet eth2 duplex",
-#        "delete interfaces ethernet eth2 mtu",
-#        "delete interfaces ethernet eth2 vif 200 description",
-#        "set interfaces ethernet eth2 description 'Replaced by Ansible'",
-#        "delete interfaces ethernet eth3 speed",
-#        "delete interfaces ethernet eth3 duplex",
-#        "delete interfaces ethernet eth3 mtu",
-#        "set interfaces ethernet eth3 description 'Replaced by Ansible'",
-#        "delete interfaces ethernet eth1 speed",
-#        "delete interfaces ethernet eth1 duplex",
-#        "set interfaces ethernet eth1 description 'Replaced by Ansible'"
-#    ]
-#
-# "after": [
-#        {
-#            "description": "Bond - 1",
-#            "enable": true,
-#            "mtu": 1400,
-#            "name": "bond1"
-#        },
-#        {
-#            "enable": true,
-#            "name": "lo"
-#        },
-#        {
-#            "description": "Replaced by Ansible",
-#            "enable": true,
-#            "name": "eth3"
-#        },
-#        {
-#            "description": "Replaced by Ansible",
-#            "enable": true,
-#            "name": "eth2",
-#            "vifs": [
-#                {
-#                    "enable": true,
-#                    "vlan_id": "200"
-#                }
-#            ]
-#        },
-#        {
-#            "description": "Replaced by Ansible",
-#            "enable": true,
-#            "name": "eth1"
-#        },
-#        {
-#            "description": "Management Interface for the Appliance",
-#            "duplex": "auto",
-#            "enable": true,
-#            "name": "eth0",
-#            "speed": "auto"
-#        }
-#    ]
-#
-#
-# -------------
+
+# Task Output
+# -----------
+# before:
+# - description: Bond - 1
+#   enabled: true
+#   mtu: 1400
+#   name: bond1
+# - enabled: true
+#   name: lo
+# - description: Configured by Ansible
+#   duplex: full
+#   enabled: true
+#   mtu: 1500
+#   name: eth3
+#   speed: '100'
+# - description: Configured by Ansible
+#   duplex: full
+#   enabled: true
+#   mtu: 500
+#   name: eth2
+#   speed: '100'
+#   vifs:
+#   - description: VIF 200 - ETH2
+#     enabled: true
+#     vlan_id: '200'
+# - description: Configured by Ansible Eng Team
+#   duplex: full
+#   enabled: true
+#   name: eth1
+#   speed: '100'
+# - description: Management Interface for the Appliance
+#   duplex: auto
+#   enabled: true
+#   name: eth0
+#   speed: auto
+# commands:
+# - delete interfaces ethernet eth2 speed
+# - delete interfaces ethernet eth2 duplex
+# - delete interfaces ethernet eth2 mtu
+# - delete interfaces ethernet eth2 vif 200 description
+# - set interfaces ethernet eth2 description 'Replaced by Ansible'
+# - delete interfaces ethernet eth3 speed
+# - delete interfaces ethernet eth3 duplex
+# - delete interfaces ethernet eth3 mtu
+# - set interfaces ethernet eth3 description 'Replaced by Ansible'
+# - delete interfaces ethernet eth1 speed
+# - delete interfaces ethernet eth1 duplex
+# - set interfaces ethernet eth1 description 'Replaced by Ansible'
+# after:
+# - description: Bond - 1
+#   enabled: true
+#   mtu: 1400
+#   name: bond1
+# - enabled: true
+#   name: lo
+# - description: Replaced by Ansible
+#   enabled: true
+#   name: eth3
+# - description: Replaced by Ansible
+#   enabled: true
+#   name: eth2
+#   vifs:
+#   - enabled: true
+#     vlan_id: '200'
+# - description: Replaced by Ansible
+#   enabled: true
+#   name: eth1
+# - description: Management Interface for the Appliance
+#   duplex: auto
+#   enabled: true
+#   name: eth0
+#   speed: auto
+
 # After state:
-# -------------
-#
+# ------------
 # vyos@vyos:~$ show configuration commands | grep interfaces
 # set interfaces bonding bond1 description 'Bond - 1'
 # set interfaces bonding bond1 mtu '1400'
