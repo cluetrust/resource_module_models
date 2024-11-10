@@ -2,7 +2,7 @@
 #
 #
 - name: Render the commands for provided  configuration
-  vyos_firewall_rules:
+  vyos.vyos.vyos_firewall_rules:
     config:
       - afi: 'ipv6'
         rule_sets:

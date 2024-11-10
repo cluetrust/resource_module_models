@@ -17,7 +17,7 @@
 # set firewall name INBOUND rule 104 ipsec 'match-none'
 #
 - name: Overrides all device configuration with provided configuration
-  vyos_firewall_rules:
+  vyos.vyos.vyos_firewall_rules:
     config:
       - afi: 'ipv4'
         rule_sets:

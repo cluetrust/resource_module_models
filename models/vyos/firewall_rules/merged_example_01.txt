@@ -7,45 +7,44 @@
 # set firewall group address-group 'inbound'
 #
 - name: Merge the provided configuration with the exisiting running configuration
-  vyos_firewall_rules:
+  vyos.vyos.vyos_firewall_rules:
     config:
-      - afi: 'ipv6'
+      - afi: ipv6
         rule_sets:
-          - name: 'UPLINK'
-            description: 'This is ipv6 specific rule-set'
-            default_action: 'accept'
+          - name: UPLINK
+            description: This is ipv6 specific rule-set
+            default_action: accept
             rules:
               - number: 1
-                action: 'accept'
-                description: 'Fwipv6-Rule 1 is configured by Ansible'
-                ipsec: 'match-ipsec'
+                action: accept
+                description: Fwipv6-Rule 1 is configured by Ansible
+                ipsec: match-ipsec
               - number: 2
-                action: 'accept'
-                description: 'Fwipv6-Rule 2 is configured by Ansible'
-                ipsec: 'match-ipsec'
-
-      - afi: 'ipv4'
+                action: accept
+                description: Fwipv6-Rule 2 is configured by Ansible
+                ipsec: match-ipsec
+      - afi: ipv4
         rule_sets:
-          - name: 'INBOUND'
-            description: 'IPv4 INBOUND rule set'
-            default_action: 'accept'
+          - name: INBOUND
+            description: IPv4 INBOUND rule set
+            default_action: accept
             rules:
               - number: 101
-                action: 'accept'
-                description: 'Rule 101 is configured by Ansible'
-                ipsec: 'match-ipsec'
+                action: accept
+                description: Rule 101 is configured by Ansible
+                ipsec: match-ipsec
               - number: 102
-                action: 'reject'
-                description: 'Rule 102 is configured by Ansible'
-                ipsec: 'match-ipsec'
+                action: reject
+                description: Rule 102 is configured by Ansible
+                ipsec: match-ipsec
               - number: 103
-                action: 'accept'
-                description: 'Rule 103 is configured by Ansible'
+                action: accept
+                description: Rule 103 is configured by Ansible
                 destination:
                   group:
-                    address_group: 'inbound'
+                    address_group: inbound
                 source:
-                  address: '192.0.2.0'
+                  address: 192.0.2.0
                 state:
                   established: true
                   new: false

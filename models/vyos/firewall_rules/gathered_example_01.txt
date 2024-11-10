@@ -31,7 +31,7 @@
 # set firewall name INBOUND rule 103 state related 'enable'
 #
 - name: Gather listed firewall rules with provided configurations
-  vyos_firewall_rules:
+  vyos.vyos.vyos_firewall_rules:
     config:
     state: gathered
 #

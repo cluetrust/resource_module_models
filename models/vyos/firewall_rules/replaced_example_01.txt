@@ -30,8 +30,10 @@
 # set firewall name INBOUND rule 103 state new 'disable'
 # set firewall name INBOUND rule 103 state related 'enable'
 #
-- name: Replace device configurations of listed firewall rules with provided configurations
-  vyos_firewall_rules:
+- name: >-
+    Replace device configurations of listed firewall rules with provided
+    configurations
+  vyos.vyos.vyos_firewall_rules:
     config:
       - afi: 'ipv6'
         rule_sets:

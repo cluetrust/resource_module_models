@@ -1,4 +1,4 @@
-# Using deleted to delete firewall rules based on rule-set name
+# Using deleted to delete all the the firewall rules when provided config is empty
 #
 # Before state
 # -------------
@@ -13,13 +13,9 @@
 # set firewall name Downlink rule 502 action 'reject'
 # set firewall name Downlink rule 502 description 'Rule 502 is configured by Ansible'
 # set firewall name Downlink rule 502 ipsec 'match-ipsec'
-
+#
 - name: Delete attributes of given firewall rules.
   vyos.vyos.vyos_firewall_rules:
-    config:
-      - afi: ipv4
-        rule_sets:
-          - name: Downlink
     state: deleted
 #
 #
@@ -54,7 +50,7 @@
 #        }
 #    ]
 #    "commands": [
-#        "delete firewall name Downlink"
+#        "delete firewall name"
 #    ]
 #
 # "after": []
