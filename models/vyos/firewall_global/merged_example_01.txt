@@ -21,6 +21,7 @@
         - connection_type: established
           action: accept
           log: true
+          log_level: emerg
         - connection_type: invalid
           action: reject
       route_redirects:
@@ -66,6 +67,7 @@
 #        "set firewall config-trap 'enable'",
 #        "set firewall state-policy established action 'accept'",
 #        "set firewall state-policy established log 'enable'",
+#        "set firewall state-policy established log-level 'emerg'",
 #        "set firewall state-policy invalid action 'reject'",
 #        "set firewall broadcast-ping 'enable'",
 #        "set firewall all-ping 'enable'",

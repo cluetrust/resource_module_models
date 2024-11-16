@@ -6,14 +6,14 @@
     config:
       - name: eth2
         access_rules:
-        - afi: ipv4
-          rules:
-            - name: INGRESS
-              direction: in
-            - name: OUTGRESS
-              direction: out
-            - name: DROP
-              direction: local
+          - afi: ipv4
+            rules:
+              - name: INGRESS
+                direction: in
+              - name: OUTGRESS
+                direction: out
+              - name: DROP
+                direction: local
     state: rendered
 #
 #

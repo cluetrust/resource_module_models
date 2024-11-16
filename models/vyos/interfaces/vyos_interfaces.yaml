@@ -17,15 +17,19 @@ DOCUMENTATION: |
   version_added: '2.9.0'
   short_description: Manages interface attributes of VyOS network devices.
   description:
-    - This module manages the interface attributes on VyOS network devices.
-    - This module supports managing base attributes of Ethernet, Bonding,
-      VXLAN, Loopback and Virtual Tunnel Interfaces.
+  - This module manages the interface attributes on VyOS network devices.
+  - This module supports managing base attributes of Ethernet, Bonding,
+    VXLAN, Loopback and Virtual Tunnel Interfaces.
+  notes:
+  - Tested against VyOS 1.3.8
+  - This module works with connection C(ansible.netcommon.network_cli).
+    See L(the VyOS OS Platform Options,../network/user_guide/platform_vyos.html).
   author:
   - Nilashish Chakraborty (@nilashishc)
   - Rohit Thakur (@rohitthakur2590)
   options:
     config:
-      description: The provided configuration
+      description: The provided interface configuration.
       type: list
       elements: dict
       suboptions:
@@ -40,8 +44,8 @@ DOCUMENTATION: |
           type: str
         duplex:
           description:
-            - Interface duplex mode.
-            - Applicable for Ethernet interfaces only.
+          - Interface duplex mode.
+          - Applicable for Ethernet interfaces only.
           choices:
           - full
           - half
@@ -50,8 +54,8 @@ DOCUMENTATION: |
         enabled:
           default: true
           description:
-            - Administrative state of the interface.
-            - Set the value to C(true) to administratively enable the interface or C(false) to disable it.
+          - Administrative state of the interface.
+          - Set the value to C(true) to administratively enable the interface or C(false) to disable it.
           type: bool
           aliases: ['enable']
         mtu:
@@ -75,13 +79,13 @@ DOCUMENTATION: |
           description:
           - Virtual sub-interfaces related configuration.
           - 802.1Q VLAN interfaces are represented as virtual sub-interfaces in VyOS.
-          elements: dict
           type: list
+          elements: dict
           suboptions:
             vlan_id:
               description:
               - Identifier for the virtual sub-interface.
-              type: str
+              type: int
             description:
               description:
               - Virtual sub-interface description.
@@ -110,7 +114,7 @@ DOCUMENTATION: |
       type: str
     state:
       description:
-      - The state the configuration after module completion.
+      - The state of the configuration after module completion.
       type: str
       choices:
       - merged
@@ -126,14 +130,14 @@ RETURN: |
   before:
     description: The configuration prior to the module execution.
     returned: when I(state) is C(merged), C(replaced), C(overridden), C(deleted) or C(purged)
-    type: dict
+    type: list
     sample: >
       This output will always be in the same format as the
       module argspec.
   after:
     description: The resulting configuration after module execution.
     returned: when changed
-    type: dict
+    type: list
     sample: >
       This output will always be in the same format as the
       module argspec.

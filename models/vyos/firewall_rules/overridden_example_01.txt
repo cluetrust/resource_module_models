@@ -19,20 +19,20 @@
 - name: Overrides all device configuration with provided configuration
   vyos.vyos.vyos_firewall_rules:
     config:
-      - afi: 'ipv4'
+      - afi: ipv4
         rule_sets:
-          - name: 'Downlink'
-            description: 'IPv4 INBOUND rule set'
-            default_action: 'accept'
+          - name: Downlink
+            description: IPv4 INBOUND rule set
+            default_action: accept
             rules:
               - number: 501
-                action: 'accept'
-                description: 'Rule 501 is configured by Ansible'
-                ipsec: 'match-ipsec'
+                action: accept
+                description: Rule 501 is configured by Ansible
+                ipsec: match-ipsec
               - number: 502
-                action: 'reject'
-                description: 'Rule 502 is configured by Ansible'
-                ipsec: 'match-ipsec'
+                action: reject
+                description: Rule 502 is configured by Ansible
+                ipsec: match-ipsec
     state: overridden
 #
 #

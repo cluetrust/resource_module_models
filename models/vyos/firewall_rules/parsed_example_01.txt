@@ -1,7 +1,7 @@
 # Using parsed
 #
 #
-- name: Render the commands for provided  configuration
+- name: Parse the commands for provided configuration
   vyos.vyos.vyos_firewall_rules:
     running_config:
       "set firewall group address-group 'inbound'
