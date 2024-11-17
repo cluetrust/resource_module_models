@@ -15,9 +15,13 @@ DOCUMENTATION: |
   module: vyos_firewall_interfaces
   version_added: '2.10.0'
   short_description: Manage firewall rules attributes of interfaces on VyOS devices
-  description: Manage firewall rules of interfaces on VyOS network devices.
+  description: Manage firewall rules of interfaces on VyOS network devices. (1.3-)
   author:
   - Rohit Thakur (@rohitthakur2590)
+  notes:
+  - Deprecated in VyOS 1.4+, firewalls are no longer connected directly to interfaces.
+    See the Firewall Configuration documentation for how to establish a
+    connection betwen the firewall rulesets and the flow, interface, or zone.
   options:
     config:
       description: A list of firewall rules options for interfaces.
