@@ -1,4 +1,0 @@
-# Using deleted
-#
-# Before state
-# -------------

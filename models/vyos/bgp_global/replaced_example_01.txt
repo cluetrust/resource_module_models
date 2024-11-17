@@ -1,4 +1,0 @@
-# Using replaced
-#
-# Before state:
-# -------------
