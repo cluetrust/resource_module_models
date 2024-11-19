@@ -14,7 +14,7 @@
 # set interfaces ethernet eth3 bond-group 'bond3'
 #
 - name: Overrides all device configuration with provided configuration
-  vyos_lag_interfaces:
+  vyos.vyos.vyos_lag_interfaces:
     config:
       - name: bond3
         mode: active-backup
@@ -23,7 +23,7 @@
           - member: eth2
           - member: eth3
         primary: eth3
-        hash-policy: layer2
+        hash_policy: layer2
     state: overridden
 #
 #
@@ -33,7 +33,7 @@
 #
 #    "before": [
 #        {
-#            "hash-policy": "layer2",
+#            "hash_policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"
@@ -47,7 +47,7 @@
 #            "primary": "eth2"
 #        },
 #        {
-#            "hash-policy": "layer2",
+#            "hash_policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth3"
@@ -75,7 +75,7 @@
 #            "name": "bond2"
 #        },
 #        {
-#            "hash-policy": "layer2",
+#            "hash_policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"

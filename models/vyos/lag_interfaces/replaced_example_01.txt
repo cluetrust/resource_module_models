@@ -15,11 +15,11 @@
 # set interfaces ethernet eth3 bond-group 'bond3'
 #
 - name: Replace device configurations of listed LAGs with provided configurations
-  vyos_lag_interfaces:
+  vyos.vyos.vyos_lag_interfaces:
     config:
       - name: bond3
-        mode: '802.3ad'
-        hash-policy: 'layer2'
+        mode: 802.3ad
+        hash_policy: layer2
         members:
           - member: eth3
     state: replaced
@@ -31,7 +31,7 @@
 #
 #    "before": [
 #        {
-#            "hash-policy": "layer2",
+#            "hash_policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"
@@ -45,7 +45,7 @@
 #            "primary": "eth2"
 #        },
 #        {
-#            "hash-policy": "layer2+3",
+#            "hash_policy": "layer2+3",
 #            "members": [
 #                {
 #                    "member": "eth3"
@@ -65,7 +65,7 @@
 #
 # "after": [
 #        {
-#            "hash-policy": "layer2",
+#            "hash_policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"
@@ -79,7 +79,7 @@
 #            "primary": "eth2"
 #        },
 #        {
-#            "hash-policy": "layer2",
+#            "hash_policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth3"

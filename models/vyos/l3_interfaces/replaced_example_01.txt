@@ -24,7 +24,7 @@
 # set interfaces ethernet eth3 vif 102 address '2001:db8:4000::2/34'
 #
 - name: Replace device configurations of listed interfaces with provided configurations
-  vyos_l3_interfaces:
+  vyos.vyos.vyos_l3_interfaces:
     config:
       - name: eth2
         ipv4:
@@ -32,7 +32,7 @@
 
       - name: eth3
         ipv6:
-	  - address: 2001:db8::11/32
+          - address: '2001:db8::11/32'
     state: replaced
 
 # After state:

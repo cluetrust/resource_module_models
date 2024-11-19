@@ -24,7 +24,7 @@
 # set interfaces ethernet eth3 vif 102 address '2001:db8:4000::2/34'
 
 - name: Overrides all device configuration with provided configuration
-  vyos_l3_interfaces:
+  vyos.vyos.vyos_l3_interfaces:
     config:
       - name: eth0
         ipv4:

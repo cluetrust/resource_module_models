@@ -1,0 +1,115 @@
+
+
+# Using gathered
+#
+# Before state:
+# -------------
+#
+# vyos:~$ show configuration commands | grep -e eth[2,3,0]
+# set interfaces ethernet eth0 address 'dhcp'
+# set interfaces ethernet eth0 duplex 'auto'
+# set interfaces ethernet eth0 hw-id '08:00:27:50:5e:19'
+# set interfaces ethernet eth0 smp_affinity 'auto'
+# set interfaces ethernet eth0 speed 'auto'
+# set interfaces ethernet eth1 address '192.0.2.14/24'
+# set interfaces ethernet eth2 address '192.0.2.11/24'
+# set interfaces ethernet eth2 address '192.0.2.10/24'
+# set interfaces ethernet eth2 address '2001:db8::10/32'
+# set interfaces ethernet eth2 address '2001:db8::12/32'
+#
+- name: Gather listed l3 interfaces with provided configurations
+  vyos.vyos.vyos_l3_interfaces:
+    state: gathered
+#
+#
+# -------------------------
+# Module Execution Result
+# -------------------------
+#
+#    "gathered": [
+#         {
+#             "ipv4": [
+#                 {
+#                     "address": "192.0.2.11/24"
+#                 },
+#                 {
+#                     "address": "192.0.2.10/24"
+#                 }
+#             ],
+#             "ipv6": [
+#                 {
+#                     "address": "2001:db8::10/32"
+#                 },
+#                 {
+#                     "address": "2001:db8::12/32"
+#                 }
+#             ],
+#             "name": "eth2"
+#         },
+#         {
+#             "ipv4": [
+#                 {
+#                     "address": "192.0.2.14/24"
+#                 }
+#             ],
+#             "name": "eth1"
+#         },
+#         {
+#             "ipv4": [
+#                 {
+#                     "address": "dhcp"
+#                 }
+#             ],
+#             "name": "eth0"
+#         }
+#     ]
+#
+#
+# After state:
+# -------------
+#
+# vyos:~$ show configuration commands | grep -e eth[2,3]
+# set interfaces ethernet eth0 address 'dhcp'
+# set interfaces ethernet eth0 duplex 'auto'
+# set interfaces ethernet eth0 hw-id '08:00:27:50:5e:19'
+# set interfaces ethernet eth0 smp_affinity 'auto'
+# set interfaces ethernet eth0 speed 'auto'
+# set interfaces ethernet eth1 address '192.0.2.14/24'
+# set interfaces ethernet eth2 address '192.0.2.11/24'
+# set interfaces ethernet eth2 address '192.0.2.10/24'
+# set interfaces ethernet eth2 address '2001:db8::10/32'
+# set interfaces ethernet eth2 address '2001:db8::12/32'
+
+
+# Using rendered
+#
+#
+- name: Render the commands for provided  configuration
+  vyos.vyos.vyos_l3_interfaces:
+    config:
+      - name: eth1
+        ipv4:
+          - address: 192.0.2.14/24
+      - name: eth2
+        ipv4:
+          - address: 192.0.2.10/24
+          - address: 192.0.2.11/24
+        ipv6:
+          - address: '2001:db8::10/32'
+          - address: '2001:db8::12/32'
+    state: rendered
+
+#
+#
+# -------------------------
+# Module Execution Result
+# -------------------------
+#
+#
+# "rendered": [
+#         "set interfaces ethernet eth1 address '192.0.2.14/24'",
+#         "set interfaces ethernet eth2 address '192.0.2.11/24'",
+#         "set interfaces ethernet eth2 address '192.0.2.10/24'",
+#         "set interfaces ethernet eth2 address '2001:db8::10/32'",
+#         "set interfaces ethernet eth2 address '2001:db8::12/32'"
+#     ]

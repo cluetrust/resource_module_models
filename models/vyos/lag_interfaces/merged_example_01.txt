@@ -8,23 +8,23 @@
 # set interfaces bonding bond3
 #
 - name: Merge provided configuration with device configuration
-  vyos_lag_interfaces:
+  vyos.vyos.vyos_lag_interfaces:
     config:
       - name: bond2
         mode: active-backup
         members:
-         - member: eth2
-         - member: eth1
-        hash-policy: layer2
+          - member: eth2
+          - member: eth1
+        hash_policy: layer2
         primary: eth2
-
-      - name: 'bond3'
-        mode: 'active-backup'
-        hash-policy: 'layer2+3'
+      - name: bond3
+        mode: active-backup
+        hash_policy: layer2+3
         members:
-         - member: eth3
-        primary: 'eth3'
+          - member: eth3
+        primary: eth3
     state: merged
+
 #
 #
 # -------------------------
@@ -54,7 +54,7 @@
 #
 #     "after": [
 #        {
-#            "hash-policy": "layer2",
+#            "hash_policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"
@@ -68,7 +68,7 @@
 #            "primary": "eth2"
 #        },
 #        {
-#            "hash-policy": "layer2+3",
+#            "hash_policy": "layer2+3",
 #            "members": [
 #                {
 #                    "member": "eth3"

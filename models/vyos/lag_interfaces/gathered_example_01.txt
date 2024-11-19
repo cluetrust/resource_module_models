@@ -1,0 +1,109 @@
+
+
+# Using gathered
+#
+# Before state:
+# -------------
+#
+# vyos@192# run show configuration commands | grep bond
+# set interfaces bonding bond0 hash-policy 'layer2'
+# set interfaces bonding bond0 mode 'active-backup'
+# set interfaces bonding bond0 primary 'eth1'
+# set interfaces bonding bond1 hash-policy 'layer2+3'
+# set interfaces bonding bond1 mode 'active-backup'
+# set interfaces bonding bond1 primary 'eth2'
+# set interfaces ethernet eth1 bond-group 'bond0'
+# set interfaces ethernet eth2 bond-group 'bond1'
+#
+- name: Gather listed lag interfaces with provided configurations
+  vyos.vyos.vyos_lag_interfaces:
+    state: gathered
+#
+#
+# -------------------------
+# Module Execution Result
+# -------------------------
+#
+#    "gathered": [
+#        {
+#            "afi": "ipv6",
+#            "rule_sets": [
+#                {
+#                    "default_action": "accept",
+#                    "description": "This is ipv6 specific rule-set",
+#                    "name": "UPLINK",
+#                    "rules": [
+#                        {
+#                            "action": "accept",
+#                            "description": "Fwipv6-Rule 1 is configured by Ansible",
+#                            "ipsec": "match-ipsec",
+#                            "number": 1
+#                        },
+#                        {
+#                            "action": "accept",
+#                            "description": "Fwipv6-Rule 2 is configured by Ansible",
+#                            "ipsec": "match-ipsec",
+#                            "number": 2
+#                        }
+#                    ]
+#                }
+#            ]
+#        },
+#        {
+#            "afi": "ipv4",
+#            "rule_sets": [
+#                {
+#                    "default_action": "accept",
+#                    "description": "IPv4 INBOUND rule set",
+#                    "name": "INBOUND",
+#                    "rules": [
+#                        {
+#                            "action": "accept",
+#                            "description": "Rule 101 is configured by Ansible",
+#                            "ipsec": "match-ipsec",
+#                            "number": 101
+#                        },
+#                        {
+#                            "action": "reject",
+#                            "description": "Rule 102 is configured by Ansible",
+#                            "ipsec": "match-ipsec",
+#                            "number": 102
+#                        },
+#                        {
+#                            "action": "accept",
+#                            "description": "Rule 103 is configured by Ansible",
+#                            "destination": {
+#                                "group": {
+#                                    "address_group": "inbound"
+#                                }
+#                            },
+#                            "number": 103,
+#                            "source": {
+#                                "address": "192.0.2.0"
+#                            },
+#                            "state": {
+#                                "established": true,
+#                                "invalid": false,
+#                                "new": false,
+#                                "related": true
+#                            }
+#                        }
+#                    ]
+#                }
+#            ]
+#        }
+#    ]
+#
+#
+# After state:
+# -------------
+#
+# vyos@192# run show configuration commands | grep bond
+# set interfaces bonding bond0 hash-policy 'layer2'
+# set interfaces bonding bond0 mode 'active-backup'
+# set interfaces bonding bond0 primary 'eth1'
+# set interfaces bonding bond1 hash-policy 'layer2+3'
+# set interfaces bonding bond1 mode 'active-backup'
+# set interfaces bonding bond1 primary 'eth2'
+# set interfaces ethernet eth1 bond-group 'bond0'
+# set interfaces ethernet eth2 bond-group 'bond1'

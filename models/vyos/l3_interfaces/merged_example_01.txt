@@ -10,16 +10,15 @@
 # set interfaces ethernet eth3 vif 102
 
 - name: Merge provided configuration with device configuration
-  vyos_l3_interfaces:
+  vyos.vyos.vyos_l3_interfaces:
     config:
       - name: eth2
         ipv4:
           - address: 192.0.2.10/28
           - address: 198.51.100.40/27
         ipv6:
-          - address: 2001:db8:100::2/32
-          - address: 2001:db8:400::10/32
-
+          - address: '2001:db8:100::2/32'
+          - address: '2001:db8:400::10/32'
       - name: eth3
         ipv4:
           - address: 203.0.113.65/26
@@ -30,8 +29,8 @@
               - address: 198.51.100.131/25
           - vlan_id: 102
             ipv6:
-              - address: 2001:db8:1000::5/38
-              - address: 2001:db8:1400::3/38
+              - address: '2001:db8:1000::5/38'
+              - address: '2001:db8:1400::3/38'
     state: merged
 
 # After state:

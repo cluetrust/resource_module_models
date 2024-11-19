@@ -13,11 +13,15 @@ RESOURCE: lag_interfaces
 COPYRIGHT: Copyright 2019 Red Hat
 
 DOCUMENTATION: |
-  module: vyos_lag
+  module: vyos_lag_interfacess
   version_added: '2.9.0'
-  short_description: Manages attributes of link aggregation groups on VyOS network devices.
+  short_description: LAG interfaces resource module
   description: This module manages attributes of link aggregation groups on VyOS network devices.
-  author: Rohit Thakur (@rohitthakur2590)
+  author:
+  - Rohit Thakur (@rohitthakur2590)
+  notes:
+  - Tested against VyOS 1.3.8.
+  - This module works with connection C(ansible.netcommon.network_cli). See L(the VyOS OS Platform Options,../network/user_guide/platform_vyos.html).
   options:
     config:
       description: A list of link aggregation group configurations.
@@ -26,69 +30,107 @@ DOCUMENTATION: |
       suboptions:
         name:
           description:
-            - Name of the link aggregation group (LAG) or bond.
+          - Name of the link aggregation group (LAG) or bond.
           type: str
-          required: True
+          required: true
         mode:
           description:
-            - LAG or bond mode.
+          - LAG or bond mode.
           type: str
           choices:
-            - 802.3ad
-            - active-backup
-            - broadcast
-            - round-robin
-            - transmit-load-balance
-            - adaptive-load-balance
-            - xor-hash
+          - 802.3ad
+          - active-backup
+          - broadcast
+          - round-robin
+          - transmit-load-balance
+          - adaptive-load-balance
+          - xor-hash
         members:
           description:
-            - List of member interfaces for the LAG (bond).
+          - List of member interfaces for the LAG (bond).
           type: list
           elements: dict
           suboptions:
             member:
               description:
-                - Name of the member interface.
+              - Name of the member interface.
               type: str
         primary:
           description:
-            - Primary device interfaces for the LAG (bond).
+          - Primary device interfaces for the LAG (bond).
           type: str
-        hash-policy:
+        hash_policy:
           description:
-            - LAG or bonding transmit hash policy.
+          - LAG or bonding transmit hash policy.
           type: str
           choices:
-            - layer2
-            - layer2+3
-            - layer3+4
-        arp-monitor:
+          - layer2
+          - layer2+3
+          - layer3+4
+        arp_monitor:
           description:
-            - ARP Link monitoring parameters.
+          - ARP Link monitoring parameters.
           type: dict
           suboptions:
             interval:
               description:
-                - ARP link monitoring frequency in milliseconds.
+              - ARP link monitoring frequency in milliseconds.
               type: int
             target:
               description:
-                -  IP address to use for ARP monitoring.
+              - IP address to use for ARP monitoring.
               type: list
+              elements: str
+    running_config:
+      description:
+      - This option is used only with state I(parsed).
+      - The value of this option should be the output received from the VyOS device
+        by executing the command B(show configuration commands | grep bond).
+      - The state I(parsed) reads the configuration from C(running_config) option and
+        transforms it into Ansible structured data as per the resource module's argspec
+        and the value is then returned in the I(parsed) key within the result.
+      type: str
     state:
       description:
-        - The state the configuration should be left in.
+      - The state of the configuration after module completion.
       type: str
       choices:
       - merged
       - replaced
       - overridden
       - deleted
+      - parsed
+      - gathered
+      - rendered
       default: merged
+RETURN: |
+  before:
+    description: The configuration prior to the module invocation.
+    returned: always
+    type: list
+    sample: >
+      The configuration returned will always be in the same format
+      of the parameters above.
+  after:
+    description: The resulting configuration module invocation.
+    returned: when changed
+    type: list
+    sample: >
+      The configuration returned will always be in the same format
+      of the parameters above.
+  commands:
+    description: The set of commands pushed to the remote device.
+    returned: always
+    type: list
+    sample:
+      - 'set interfaces bonding bond2'
+      - 'set interfaces bonding bond2 hash-policy layer2'
 
 EXAMPLES:
   - merged_example_01.txt
   - replaced_example_01.txt
   - overridden_example_01.txt
   - deleted_example_01.txt
+  - gathered_example_01.txt
+  - rendered_example_01.txt
+  - parsed_example_01.txt

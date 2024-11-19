@@ -14,8 +14,8 @@
 # set interfaces ethernet eth2 bond-group 'bond2'
 # set interfaces ethernet eth3 bond-group 'bond3'
 #
-- name: "Delete LAG attributes of given interfaces (Note: This won't delete the interface itself)"
-  vyos_lag_interfaces:
+- name: Delete LAG attributes of given interfaces (Note- This won't delete the interface itself)
+  vyos.vyos.vyos_lag_interfaces:
     config:
       - name: bond2
       - name: bond3
@@ -28,7 +28,7 @@
 #
 # "before": [
 #        {
-#            "hash-policy": "layer2",
+#            "hash_policy": "layer2",
 #            "members": [
 #                {
 #                    "member": "eth1"
@@ -42,7 +42,7 @@
 #            "primary": "eth2"
 #        },
 #        {
-#            "hash-policy": "layer2+3",
+#            "hash_policy": "layer2+3",
 #            "members": [
 #                {
 #                    "member": "eth3"
