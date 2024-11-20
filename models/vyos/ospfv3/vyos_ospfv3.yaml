@@ -15,9 +15,14 @@ COPYRIGHT: Copyright 2019 Red Hat
 DOCUMENTATION: |
   module: vyos_ospfv3
   version_added: '2.10.0'
-  short_description: OSPFv3 resource module.
+  short_description: OSPFv3 resource module
   description: This resource module configures and manages attributes of OSPFv3 routes on VyOS network devices.
-  author: Rohit Thakur (@rohitthakur2590)
+  author:
+  - Rohit Thakur (@rohitthakur2590)
+  notes:
+  - Tested against VyOS 1.3.8
+  - This module works with connection C(ansible.netcommon.network_cli).
+    See L(the VyOS OS Platform Options,../network/user_guide/platform_vyos.html).
   options:
     config:
       description: A provided OSPFv3 route configuration.
@@ -52,12 +57,12 @@ DOCUMENTATION: |
                   description: Don't advertise this range.
                   type: bool
         parameters:
-          descriptions: OSPFv3 specific parameters.
+          description: OSPFv3 specific parameters.
           type: dict
           suboptions:
-           router_id:
-             description: Override the default router identifier.
-             type: str
+            router_id:
+              description: Override the default router identifier.
+              type: str
         redistribute:
           description: Redistribute information from another routing protocol.
           type: list
@@ -66,17 +71,27 @@ DOCUMENTATION: |
             route_type:
               description: Route type to redistribute.
               type: str
-              choices: ['bgp', 'connected', 'kernel', 'ripng', 'static']
+              choices: 
+              - bgp
+              - connected
+              - kernel
+              - ripng
+              - static
             route_map:
               description: Route map references.
               type: str
     running_config:
       description:
-        - The configuration to be parsed.
+      - This option is used only with state I(parsed).
+      - The value of this option should be the output received from the VyOS device
+        by executing the command B(show configuration commands | grep ospfv3).
+      - The state I(parsed) reads the configuration from C(running_config) option and
+        transforms it into Ansible structured data as per the resource module's argspec
+        and the value is then returned in the I(parsed) key within the result.
       type: str
     state:
       description:
-        - The state the configuration should be left in.
+      - The state the configuration should be left in.
       type: str
       choices:
       - merged
@@ -86,6 +101,28 @@ DOCUMENTATION: |
       - gathered
       - rendered
       default: merged
+RETURN: |
+  before:
+    description: The configuration prior to the model invocation.
+    returned: always
+    type: dict
+    sample: >
+      The configuration returned will always be in the same format
+       of the parameters above.
+  after:
+    description: The resulting configuration model invocation.
+    returned: when changed
+    type: dict
+    sample: >
+      The configuration returned will always be in the same format
+       of the parameters above.
+  commands:
+    description: The set of commands pushed to the remote device.
+    returned: always
+    type: list
+    sample:
+      - "set protocols ospfv3 parameters router-id '192.0.2.10'"
+      - "set protocols ospfv3 redistribute 'bgp'"
 
 EXAMPLES:
   - merged_example_01.txt

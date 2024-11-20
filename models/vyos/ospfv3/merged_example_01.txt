@@ -10,19 +10,19 @@
   vyos.vyos.vyos_ospfv3:
     config:
       redistribute:
-        - route_type: 'bgp'
+        - route_type: bgp
       parameters:
-        router_id: '192.0.2.10'
+        router_id: 192.0.2.10
       areas:
-        - area_id: '2'
-          export_list: 'export1'
-          import_list: 'import1'
+        - area_id: 2
+          export_list: export1
+          import_list: import1
 
           range:
             - address: '2001:db10::/32'
             - address: '2001:db20::/32'
             - address: '2001:db30::/32'
-        - area_id: '3'
+        - area_id: 3
           range:
             - address: '2001:db40::/32'
     state: merged
@@ -32,7 +32,7 @@
 # Module Execution Result
 # -------------------------
 #
-# before": []
+# before": {}
 #
 #    "commands": [
 #       "set protocols ospfv3 redistribute bgp",
@@ -45,7 +45,6 @@
 #       "set protocols ospfv3 area 2 import-list import1",
 #       "set protocols ospfv3 area '3'",
 #       "set protocols ospfv3 area 3 range 2001:db40::/32"
-#
 #    ]
 #
 # "after": {

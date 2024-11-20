@@ -63,7 +63,7 @@
 #        "delete protocols ospfv3"
 #    ]
 #
-# "after": []
+# "after": {}
 # After state
 # ------------
 # vyos@192# run show configuration commands | grep ospfv3
