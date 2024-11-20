@@ -139,7 +139,7 @@
 #        "delete protocols ospf"
 #    ]
 #
-# "after": []
+# "after": {}
 # After state
 # ------------
 # vyos@192# run show configuration commands | grep ospf
