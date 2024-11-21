@@ -4,16 +4,15 @@
 # -------------
 #
 # vyos@vyos:~$ show configuration commands|grep lldp
-# vyos@vyos:~$
 #
 - name: Merge provided configuration with device configuration
-  vyos_lldp_global:
+  vyos.vyos.vyos_lldp_global:
     config:
       legacy_protocols:
-        - 'fdp'
-        - 'cdp'
-      snmp: 'enable'
-      address: 11.11.11.11
+        - fdp
+        - cdp
+      snmp: enable
+      address: 192.0.2.11
     state: merged
 #
 #
@@ -21,36 +20,29 @@
 # Module Execution Results
 # ------------------------
 #
-# "before": []
-#
-# "commands": [
-#        "set service lldp legacy-protocols fdp",
-#        "set service lldp legacy-protocols cdp",
-#        "set service lldp snmp enable",
-#        "set service lldp management-address '11.11.11.11'"
+#  before": {}
+#  
+#  commands": [
+#    "set service lldp legacy-protocols fdp",
+#    "set service lldp legacy-protocols cdp",
+#    "set service lldp snmp enable",
+#    "set service lldp management-address '192.0.2.11'"
+#  ]
+#  
+#  after": {
+#    "snmp": "enable"
+#    "address": "192.0.2.11"
+#    "legacy_protocols": [
+#        "cdp",
+#        "fdp"
 #    ]
-# "after": [
-#        {
-#            "snmp": "enable"
-#        },
-#        {
-#            "address": "11.11.11.11"
-#        },
-#        {
-#            "legacy_protocols": [
-#                "cdp",
-#                "fdp"
-#            ]
-#        }
-#        {
-#            "enable": true
-#        }
-#    ]
+#    "enable": true
+#  }
 #
 # After state:
 # -------------
 #
 # set service lldp legacy-protocols cdp
 # set service lldp legacy-protocols fdp
-# set service lldp management-address '11.11.11.11'
+# set service lldp management-address '192.0.2.11'
 # set service lldp snmp enable

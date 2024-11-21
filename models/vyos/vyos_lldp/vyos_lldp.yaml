@@ -15,10 +15,14 @@ COPYRIGHT: Copyright 2019 Red Hat
 DOCUMENTATION: |
   module: vyos_lldp_global
   version_added: '2.9.0'
-  short_description: Manage link layer discovery protocol (LLDP) attributes on VyOS devices..
-  description: This module manages link layer discovery protocol (LLDP) attributes on VyOS devices.
+  short_description: LLDP global resource module
+  description: This module manages link layer discovery protocol (LLDP) attributes on
+    VyOS devices.
+  notes:
+  - Tested against VyOS 1.3.8
+  - This module works with connection C(ansible.netcommon.network_cli). See L(the VyOS OS Platform Options,../network/user_guide/platform_vyos.html).
   author:
-     - Rohit Thakur (@rohitthakur2590)
+  - Rohit Thakur (@rohitthakur2590)
   options:
     config:
       description: The provided link layer discovery protocol (LLDP) configuration.
@@ -26,36 +30,74 @@ DOCUMENTATION: |
       suboptions:
         enable:
           description:
-            - This argument is a boolean value to enable or disable LLDP.
+          - This argument is a boolean value to enable or disable LLDP.
           type: bool
         address:
           description:
-            - This argument defines management-address.
+          - This argument defines management-address.
           type: str
         snmp:
           description:
-            - This argument enable the SNMP queries to LLDP database.
+          - This argument enable the SNMP queries to LLDP database.
           type: str
         legacy_protocols:
           description:
-            - List of the supported legacy protocols.
+          - List of the supported legacy protocols.
           type: list
+          elements: str
           choices:
-            - cdp
-            - edp
-            - fdp
-            - sonmp
+          - cdp
+          - edp
+          - fdp
+          - sonmp
+    running_config:
+      description:
+      - This option is used only with state I(parsed).
+      - The value of this option should be the output received from the VyOS device
+        by executing the command B(show configuration commands | grep lldp).
+      - The state I(parsed) reads the configuration from C(running_config) option and
+        transforms it into Ansible structured data as per the resource module's argspec
+        and the value is then returned in the I(parsed) key within the result.
+      type: str
     state:
       description:
-        - The state the configuration should be left in.
+      - The state of the configuration after module completion.
       type: str
       choices:
       - merged
       - replaced
       - deleted
+      - gathered
+      - rendered
+      - parsed
       default: merged
-
+RETURN: |
+  before:
+    description: The configuration prior to the module invocation.
+    returned: always
+    type: dict
+    sample: >
+      The configuration returned will always be in the same format
+      of the parameters above.
+  after:
+    description: The resulting configuration after module invocation.
+    returned: when changed
+    type: dict
+    sample: >
+      The configuration returned will always be in the same format
+      of the parameters above.
+  commands:
+    description: The set of commands pushed to the remote device.
+    returned: always
+    type: list
+    sample:
+      - set service lldp legacy-protocols sonmp
+      - set service lldp management-address '192.0.2.14'
 EXAMPLES:
   - merged_example_01.txt
   - replaced_example_01.txt
   - deleted_example_01.txt
+  - gathered_example_01.txt
+  - rendered_example_01.txt
+  - parsed_example_01.txt
+

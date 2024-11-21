@@ -1,0 +1,100 @@
+# Using gathered
+#
+# Before state:
+# -------------
+#
+# vyos@192# run show configuration commands | grep lldp
+# set service lldp legacy-protocols 'cdp'
+# set service lldp management-address '192.0.2.17'
+#
+- name: Gather lldp global config with provided configurations
+  vyos.vyos.vyos_lldp_global:
+    config:
+    state: gathered
+#
+#
+# -------------------------
+# Module Execution Result
+# -------------------------
+#
+#    "gathered": {
+#        "config_trap": true,
+#        "group": {
+#            "address_group": [
+#                {
+#                    "description": "Sales office hosts address list",
+#                    "members": [
+#                        {
+#                            "address": "192.0.3.1"
+#                        },
+#                        {
+#                            "address": "192.0.3.2"
+#                        }
+#                    ],
+#                    "name": "ENG-HOSTS"
+#                },
+#                {
+#                    "description": "Sales office hosts address list",
+#                    "members": [
+#                        {
+#                            "address": "192.0.2.1"
+#                        },
+#                        {
+#                            "address": "192.0.2.2"
+#                        },
+#                        {
+#                            "address": "192.0.2.3"
+#                        }
+#                    ],
+#                    "name": "SALES-HOSTS"
+#                }
+#            ],
+#            "network_group": [
+#                {
+#                    "description": "This group has the Management network addresses",
+#                    "members": [
+#                        {
+#                            "address": "192.0.1.0/24"
+#                        }
+#                    ],
+#                    "name": "MGMT"
+#                }
+#            ]
+#        },
+#        "log_martians": true,
+#        "ping": {
+#            "all": true,
+#            "broadcast": true
+#        },
+#        "route_redirects": [
+#            {
+#                "afi": "ipv4",
+#                "icmp_redirects": {
+#                    "receive": false,
+#                    "send": true
+#                },
+#                "ip_src_route": true
+#            }
+#        ],
+#        "state_policy": [
+#            {
+#                "action": "accept",
+#                "connection_type": "established",
+#                "log": true
+#            },
+#            {
+#                "action": "reject",
+#                "connection_type": "invalid"
+#            }
+#        ],
+#        "syn_cookies": true,
+#        "twa_hazards_protection": true,
+#        "validation": "strict"
+#    }
+#
+# After state:
+# -------------
+#
+# vyos@192# run show configuration commands | grep lldp
+# set service lldp legacy-protocols 'cdp'
+# set service lldp management-address '192.0.2.17'

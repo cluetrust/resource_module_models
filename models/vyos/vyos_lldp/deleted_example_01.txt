@@ -6,10 +6,11 @@
 # set service lldp legacy-protocols cdp
 # set service lldp legacy-protocols edp
 # set service lldp legacy-protocols sonmp
-# set service lldp management-address '172.16.113.104'
+# set service lldp management-address '192.0.2.14'
 #
-- name: "Delete attributes of given lldp service (Note: This won't delete the LLDP service itself)"
-  vyos_lldp_global:
+- name: Delete attributes of given lldp service (This won't delete the LLDP service
+    itself)
+  vyos.vyos.vyos_lldp_global:
     config:
     state: deleted
 #
@@ -18,32 +19,24 @@
 # Module Execution Results
 # ------------------------
 #
-# "before": [
-#        {
-#            "address": "172.16.113.104"
-#        },
-#        {
-#            "legacy_protocols": [
-#                "cdp",
-#                "edp",
-#                "sonmp"
-#            ]
-#        }
-#        {
-#            "enable": true
-#        }
+# "before": {
+#    "address": "192.0.2.14"
+#    "legacy_protocols": [
+#       "cdp",
+#       "edp",
+#       "sonmp"
 #    ]
+#    "enable": true
+#  }
 #
 #  "commands": [
-#       "delete service lldp management-address",
-#        "delete service lldp legacy-protocols"
-#    ]
+#     "delete service lldp management-address",
+#     "delete service lldp legacy-protocols"
+#  ]
 #
-# "after": [
-#        {
-#            "enable": true
-#        }
-#          ]
+# "after": {
+#    "enable": true
+#  }
 #
 # After state
 # ------------

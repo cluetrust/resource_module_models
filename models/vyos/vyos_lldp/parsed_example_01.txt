@@ -1,0 +1,25 @@
+# Using parsed
+#
+#
+- name: Parse the provided commands to provide structured configuration
+  vyos.vyos.vyos_lldp_global:
+    running_config:
+      "set service lldp legacy-protocols 'cdp'
+       set service lldp legacy-protocols 'fdp'
+       set service lldp management-address '192.0.2.11'"
+    state: parsed
+#
+#
+# -------------------------
+# Module Execution Result
+# -------------------------
+#
+#
+# "parsed": {
+#    "address": "192.0.2.11",
+#    "enable": true,
+#    "legacy_protocols": [
+#       "cdp",
+#       "fdp"
+#    ]
+#  }
