@@ -131,9 +131,11 @@ DOCUMENTATION: |
                         md5_key:
                           description: MD5 key.
                           type: str
+                          no_log: True
                     plaintext_password:
                       description: Plain text password.
                       type: str
+                      no_log: True
                 dead_interval:
                   description: Interval after which a neighbor is declared dead.
                   type: int

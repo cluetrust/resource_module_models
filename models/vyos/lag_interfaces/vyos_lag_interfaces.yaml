@@ -13,7 +13,7 @@ RESOURCE: lag_interfaces
 COPYRIGHT: Copyright 2019 Red Hat
 
 DOCUMENTATION: |
-  module: vyos_lag_interfacess
+  module: vyos_lag_interfaces
   version_added: '2.9.0'
   short_description: LAG interfaces resource module
   description: This module manages attributes of link aggregation groups on VyOS network devices.
