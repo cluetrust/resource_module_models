@@ -15,9 +15,14 @@ COPYRIGHT: Copyright 2019 Red Hat
 DOCUMENTATION: |
   module: vyos_static_routes
   version_added: '2.10.0'
-  short_description: Static routes resource module.
+  short_description: Static routes resource module
   description: This module manages attributes of static routes on VyOS network devices.
-  author: Rohit Thakur (@rohitthakur2590)
+  notes:
+  - Tested against VyOS 1.3.8.
+  - This module works with connection C(ansible.netcommon.network_cli).
+    See L(the VyOS OS Platform Options,../network/user_guide/platform_vyos.html).
+  author:
+  - Rohit Thakur (@rohitthakur2590)
   options:
     config:
       description: A provided static route configuration.
@@ -25,66 +30,79 @@ DOCUMENTATION: |
       elements: dict
       suboptions:
         address_families:
-          description: A dictionary specifying the address family to which the static route(s) belong.
+          description: A dictionary specifying the address family to which the static
+            route(s) belong.
           type: list
           elements: dict
           suboptions:
             afi:
               description:
-                - Specifies the type of route.
+              - Specifies the type of route.
               type: str
-              choices: ['ipv4', 'ipv6']
-              required: True
+              choices: 
+              - ipv4
+              - ipv6
+              required: true
             routes:
-              description: A ditionary that specify the static route configurations.
+              description: A dictionary that specify the static route configurations.
               type: list
               elements: dict
               suboptions:
                 dest:
                   description:
-                    - An IPv4/v6 address in CIDR notation that specifies the destination network for the static route.
+                  - An IPv4/v6 address in CIDR notation that specifies the destination
+                    network for the static route.
                   type: str
-                  required: True
+                  required: true
                 blackhole_config:
                   description:
-                    - Configured to silently discard packets.
+                  - Configured to silently discard packets.
                   type: dict
                   suboptions:
                     type:
                       description:
-                        - This is to configure only blackhole.
+                      - This is to configure only blackhole.
                       type: str
                     distance:
                       description:
-                        - Distance for the route.
+                      - Distance for the route.
                       type: int
                 next_hops:
                   description:
-                    - Next hops to the specified destination.
+                  - Next hops to the specified destination.
                   type: list
                   elements: dict
                   suboptions:
                     forward_router_address:
                       description:
-                        - The IP address of the next hop that can be used to reach the destination network.
+                      - The IP address of the next hop that can be used to reach the
+                        destination network.
                       type: str
-                      required: True
+                      required: true
                     enabled:
                       description:
-                        - Disable IPv4/v6 next-hop static route.
+                      - Disable IPv4/v6 next-hop static route.
                       type: bool
                     admin_distance:
                       description:
-                        - Distance value for the route.
+                      - Distance value for the route.
                       type: int
                     interface:
                       description:
-                        - Name of the outgoing interface.
+                      - Name of the outgoing interface.
                       type: str
-
+    running_config:
+      description:
+      - This option is used only with state I(parsed).
+      - The value of this option should be the output received from the VyOS device
+        by executing the command B(show configuration commands | grep static route).
+      - The state I(parsed) reads the configuration from C(running_config) option and
+        transforms it into Ansible structured data as per the resource module's argspec
+        and the value is then returned in the I(parsed) key within the result.
+      type: str
     state:
       description:
-        - The state the configuration should be left in.
+      - The state of the configuration after module completion.
       type: str
       choices:
       - merged
@@ -93,13 +111,39 @@ DOCUMENTATION: |
       - deleted
       - gathered
       - rendered
+      - parsed
       default: merged
+RETURN: |
+  before:
+    description: The configuration prior to the model invocation.
+    returned: always
+    type: dict
+    sample: >
+      The configuration returned will always be in the same format
+       of the parameters above.
+  after:
+    description: The resulting configuration model invocation.
+    returned: when changed
+    type: dict
+    sample: >
+      The configuration returned will always be in the same format
+       of the parameters above.
+  commands:
+    description: The set of commands pushed to the remote device.
+    returned: always
+    type: list
+    sample:
+      - "set protocols static route 192.0.2.32/28 next-hop '192.0.2.6'"
+      - "set protocols static route 192.0.2.32/28 'blackhole'"
+
+
 
 EXAMPLES:
   - merged_example_01.txt
   - replaced_example_01.txt
   - overridden_example_01.txt
-  - deleted_example_01.txt
+  - deleted_example_02.txt
+  - deleted_example_03.txt
   - rendered_example_01.txt
   - parsed_example_01.txt
   - gathered_example_01.txt
