@@ -6,10 +6,10 @@
 # vyos@vyos# run show configuration commands | grep lldp
 # set service lldp interface eth2 location elin '0000000911'
 #
-- name: "Delete LLDP attributes of given interfaces (Note: This won't delete other LLDP configuration)."
-  vyos_lag_interfaces:
+- name: Delete lldp interface attributes of given interfaces.
+  vyos.vyos.vyos_lldp_interfaces:
     config:
-     - name: 'eth2'
+     - name: eth2
     state: deleted
 #
 #
@@ -17,18 +17,17 @@
 # Module Execution Results
 # ------------------------
 #
-    "before": [
-        {
-            "location": {
-                "elin": 0000000911
-            },
-            "name": "eth2"
-        }
-    ]
-# "commands": [
-#    "commands": [
-#        "delete service lldp interface eth2"
-#    ]
+#  "before": [
+#      {
+#          "location": {
+#              "elin": 0000000911
+#          },
+#          "name": "eth2"
+#      }
+#  ]
+#  "commands": [
+#      "delete service lldp interface eth2"
+#  ]
 #
 # "after": []
 # After state

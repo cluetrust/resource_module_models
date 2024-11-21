@@ -13,9 +13,13 @@ COPYRIGHT: Copyright 2019 Red Hat
 
 DOCUMENTATION: |
   module: vyos_lldp_interfaces
-  version_added: '2.9.0'
-  short_description: Manage link layer discovery protocol (LLDP) attributes of interfaces on VyOS devices.
-  description: Manage link layer discovery protocol (LLDP) attributes of interfaces on VyOS network devices.
+  version_added: '1.0.0'
+  short_description: LLDP interfaces resource module
+  description: This module manages attributes of lldp interfaces on VyOS network devices.
+  notes:
+  - Tested against VyOS 1.3.8
+  - This module works with connection C(ansible.netcommon.network_cli). 
+    See L(the VyOS OS Platform Options,../network/user_guide/platform_vyos.html).
   author:
    - Rohit Thakur (@rohitthakur2590)
   options:
@@ -26,44 +30,44 @@ DOCUMENTATION: |
       suboptions:
         name:
           description:
-            - Name of the  LLDP interface.
+          - Name of the LLDP interface.
           type: str
-          required: True
+          required: true
         enable:
-          default: True
+          default: true
           description:
-            - Controls disabling of LLDP on the interface.
+          - Disable LLDP on the interfaces.
           type: bool
         location:
           description:
-            - LLDP-MED location data.
+          - LLDP-MED location data.
           type: dict
           suboptions:
             civic_based:
               description:
-                - Civic-based location data.
+              - Civic-based location data.
               type: dict
               suboptions:
                 ca_info:
-                   description: LLDP-MED address info
-                   type: list
-                   elements: dict
-                   suboptions:
-                     ca_type:
-                       description: LLDP-MED Civic Address type.
-                       type: int
-                       reqired: True
-                     ca_value:
-                       description: LLDP-MED Civic Address value.
-                       type: str
-                       reqired: True
+                  description: LLDP-MED address info
+                  type: list
+                  elements: dict
+                  suboptions:
+                    ca_type:
+                      description: LLDP-MED Civic Address type.
+                      type: int
+                      required: true
+                    ca_value:
+                      description: LLDP-MED Civic Address value.
+                      type: str
+                      required: true
                 country_code:
                   description: Country Code
                   type: str
-                  required: True
+                  required: true
             coordinate_based:
               description:
-                - Coordinate-based location.
+              - Coordinate-based location.
               type: dict
               suboptions:
                 altitude:
@@ -72,31 +76,70 @@ DOCUMENTATION: |
                 datum:
                   description: Coordinate datum type.
                   type: str
-                  choices:  ['WGS84', 'NAD83', 'MLLW']
+                  choices:
+                  - WGS84
+                  - NAD83
+                  - MLLW
                 latitude:
                   description: Latitude.
                   type: str
-                  required: True
+                  required: true
                 longitude:
                   description: Longitude.
                   type: str
-                  required: True
+                  required: true
             elin:
               description: Emergency Call Service ELIN number (between 10-25 numbers).
               type: str
+    running_config:
+      description:
+        - This option is used only with state I(parsed).
+        - The value of this option should be the output received from the VyOS device
+          by executing the command B(show configuration commands | grep lldp).
+        - The state I(parsed) reads the configuration from C(running_config) option and
+          transforms it into Ansible structured data as per the resource module's argspec
+          and the value is then returned in the I(parsed) key within the result.
+      type: str
     state:
       description:
-        - The state the configuration should be left in.
+      - The state of the configuration after module completion.
       type: str
       choices:
       - merged
       - replaced
       - overridden
       - deleted
+      - rendered
+      - parsed
+      - gathered
       default: merged
-
+RETURN: |
+  before:
+    description: The configuration as structured data after module completion.
+    returned: always
+    type: list
+    sample: >
+      The configuration returned will always be in the same format
+      of the parameters above.
+  after:
+    description: The configuration as structured data after module completion.
+    returned: when changed
+    type: list
+    sample: >
+      The configuration returned will always be in the same format
+      of the parameters above.
+  commands:
+    description: The set of commands pushed to the remote device.
+    returned: always
+    type: list
+    sample:
+      - "set service lldp interface eth2 'disable'"
+      - "delete service lldp interface eth1 location"
 EXAMPLES:
   - merged_example_01.txt
   - replaced_example_01.txt
   - overridden_example_01.txt
   - deleted_example_01.txt
+  - gathered_example_01.txt
+  - rendered_example_01.txt
+  - parsed_example_01.txt
