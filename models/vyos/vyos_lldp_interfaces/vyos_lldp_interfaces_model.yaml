@@ -115,7 +115,7 @@ DOCUMENTATION: |
       default: merged
 RETURN: |
   before:
-    description: The configuration as structured data after module completion.
+    description: The configuration as structured data prior to module invocation.
     returned: always
     type: list
     sample: >
