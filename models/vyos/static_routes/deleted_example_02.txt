@@ -15,8 +15,8 @@
   vyos.vyos.vyos_static_routes:
     config:
       - address_families:
-        - afi: ipv4
-        - afi: ipv6
+          - afi: ipv4
+          - afi: ipv6
     state: deleted
 #
 #

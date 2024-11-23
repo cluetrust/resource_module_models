@@ -39,7 +39,7 @@ DOCUMENTATION: |
               description:
               - Specifies the type of route.
               type: str
-              choices: 
+              choices:
               - ipv4
               - ipv6
               required: true

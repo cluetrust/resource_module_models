@@ -15,13 +15,13 @@
   vyos_static_routes:
     config:
       - address_families:
-        - afi: 'ipv4'
-          routes:
-            - dest: '192.0.2.32/28'
+          - afi: 'ipv4'
+            routes:
+              - dest: '192.0.2.32/28'
       - address_families:
-        - afi: 'ipv6'
-          routes:
-            - dest: '2001:db8:1000::/36'
+          - afi: 'ipv6'
+            routes:
+              - dest: '2001:db8:1000::/36'
     state: deleted
 #
 #
